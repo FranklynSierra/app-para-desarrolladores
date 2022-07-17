@@ -2,6 +2,7 @@
 import './styles/loginPage/loginpage.scss';
 import compu from './img/Computadora.png';
 import logo from './img/logo-programacion-en-español.png'
+import Editor from './components/Editor';
 function App() {
   return (
 <body>
@@ -23,7 +24,6 @@ function App() {
         <button class="btn-main-s iniciar">Iniciar Seción</button>
     </div>
 </nav>
-
 <div className='home'>
 <section class="sec-home home">
     <div class="home-cta">

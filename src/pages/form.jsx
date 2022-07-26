@@ -2,10 +2,16 @@ import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import '../styles/form/form.scss'
+
 // Models
 import { ROLES } from '../models/roles.enoum';
 import { User } from '../models/roles.class';
+
 const PrincipalForm = () => {
+    // const navigate=useNavigate()
+    // const viajar=()=>{
+    // navigate('/')
+    // }
 
     let user = new User();
 
@@ -16,6 +22,12 @@ const PrincipalForm = () => {
         confirm: '', // to confirm password
         role: ROLES.USER
     }
+    // const estados={
+    //     username: '',
+    //     email: '',
+    //     password: '',
+      
+    // }
 
     const registerSchema = Yup.object().shape(
         {
@@ -42,34 +54,47 @@ const PrincipalForm = () => {
                 }).required('Tienes que confirmar la contraseña')
         }
     )
-
-    const submit = (values) => {
-        alert('registrar ususario')
-    }
-
+ 
     return (
         <div className='form-register'>
             <h4>Formulario de registro</h4>
             <Formik className='formik'
                 initialValues = {initialValues}
-              
                 validationSchema = {registerSchema}
               
                 onSubmit={async (values) => {
                     await new Promise((r) => setTimeout(r, 1000));
+                    console.log(values); 
+                   
+                       let url='https://1b7f-201-141-113-241.ngrok.io/api/Access/SignUp/';
+                       let valor=values;
+                       fetch(url,{
+                        method:'POST',
+                        mode:'no-cors',
+                        headers:{
+                            "Content-type":"aplication/json",
+                            "Accept":"aplication/json",
+                        },
+                        body:JSON.stringify(valor)
+                       })
+                    
                     alert(JSON.stringify(values, null, 2))
+
+
                 }}
             >
 
-            {({ values,
+            {({ isSubmitting,
+                  handleSubmit,
                     touched,
                     errors,
-                    isSubmitting,
+                    
                     handleChange,
-                    handleBlur }) => (
-                        <Form className='form'>
+                    handleBlur,
+                    values, }) => (
+                        <Form className='form'onSubmit={handleSubmit}>
                             <label htmlFor="username">Nombre de Usuario</label>
-                            <Field className='controls' id="username" type="text" name="username" placeholder="Tu nombre de usuario" />
+                            <Field value={values.username} className='controls' id="username" type="text" name="username" placeholder="Tu nombre de usuario" />
                             
                             {/* Username Errors */}
                             {
@@ -80,7 +105,7 @@ const PrincipalForm = () => {
                             }
 
                             <label htmlFor="email">Email</label>
-                            <Field className='controls' id="email" type="email" name="email" placeholder="tu email" />
+                            <Field value={values.email} className='controls' id="email" type="email" name="email" placeholder="tu email" />
 
                             {/* Email Errors */}
                             {
@@ -92,6 +117,7 @@ const PrincipalForm = () => {
 
                             <label htmlFor="password">Contraseña</label>
                             <Field
+                            value={values.password}
                             className='controls'
                                 id="password"
                                 name="password"
@@ -108,6 +134,7 @@ const PrincipalForm = () => {
 
                             <label htmlFor="confirm">Confirmar Contraseña</label>
                             <Field
+                            value={values.confirm}
                             className='controls'
                                 id="confirm"
                                 name="confirm"
@@ -122,9 +149,9 @@ const PrincipalForm = () => {
                                 )
                             }
 
-                            <button className='btn' type="submit">Register Account</button>
+                            <button  className='btn' type="submit">Register Account</button>
                             {isSubmitting ? (<p>Enviando tus datos...</p>): null}
-
+                             
                         </Form>
                     )
             }

@@ -5,7 +5,7 @@
     box-sizing: border-box;
 }
 body{
-    background:#24283c;
+    background:#10187E;
 }
 
 .form-register{
@@ -18,7 +18,24 @@ border-radius: 4px;
 font-family: 'calibri';
 color: #fff;
 box-shadow: 7px 13px 37px #000;
+.contenedor-imagen{
+    margin-top: 10px;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    .imagen{
+  
+
+        width: 80px;
+        height: 70px;
+        border-radius: 50px;
+    }
+}
 h4{
+    text-align: center;
     font-size: 22px;
     margin-bottom: 20px;
 
@@ -48,6 +65,7 @@ p{
     padding: 12px;
     color: #fff;
     margin-left: 16px 0;
+    border-radius: 50px;
     font-size: 16px;
 }
 

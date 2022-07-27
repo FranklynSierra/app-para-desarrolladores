@@ -28,19 +28,22 @@ body {
 
 .App {
   width: 100%;
-  max-width: 800px;
+
   height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  border: 1px solid #333;
-  box-shadow: 0px 0px 15px gray;
+
+
 }
 
 .Header, .Footer {
+  scrollbar-color: rgba(0, 0, 0, .5) rgba(0, 0, 0, 0);
+  scrollbar-width: thin;
+  color: #000;
   width: 100%;
-  background-color: #66d8f5;
+  background-color: #cacaca;
   padding: 1rem;
   display: flex;
   justify-content: space-between;
@@ -179,6 +182,7 @@ body {
 
 .newPostForm input[type='text'], 
 .newPostForm textarea {
+  border: 1px solid #000;
   font-family: 'Open Sans', sans-serif;
   width: 100%;
   min-height: 48px;
@@ -205,6 +209,7 @@ body {
 
 .Missing h2, .PostPage h2, 
 .Missing p, .PostPage p {
+  color: #222;
   margin-bottom: 1rem;
 }
 
@@ -217,6 +222,7 @@ body {
   background-color: red;
   color: #fff;
   cursor: pointer;
+  border: none;
 }
 
 .statusMsg {

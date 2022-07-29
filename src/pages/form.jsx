@@ -2,9 +2,9 @@ import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import '../styles/form/form.scss'
-
+import { Link } from 'react-router-dom';
 // Models
-import { ROLES } from '../models/roles.enoum';
+
 import { User } from '../models/roles.class';
 
 const PrincipalForm = () => {
@@ -12,7 +12,26 @@ const PrincipalForm = () => {
     // const viajar=()=>{
     // navigate('/')
     // }
-
+const enviar= async (values) => {
+    await new Promise((r) => setTimeout(r, 1000));
+    console.log(values); 
+   
+       let url='https://f6fc-201-141-113-241.ngrok.io/api/Access/SignUp/';
+       let valor=values;
+       fetch(url,{
+        method:'POST',
+        mode:'cors',
+        headers:{
+            "Content-Type":"application/json; charset=utf-8",
+            //"Accept":"aplication/json",
+        },
+        body:JSON.stringify(values)
+       }).then((data) => data.json())
+       .then( (res) => {
+           console.log('data respuesta');
+           alert(JSON.stringify(values, null, 2))
+       })
+       .catch( (err) => console.log('error'))}
     let user = new User();
 
     const initialValues = {
@@ -20,7 +39,7 @@ const PrincipalForm = () => {
         email: '',
         password: '',
         confirm: '', // to confirm password
-        role: ROLES.USER
+     
     }
     // const estados={
     //     username: '',
@@ -38,9 +57,7 @@ const PrincipalForm = () => {
             email: Yup.string()
                 .email('Formato invalido')
                 .required('coloca el correo electronico'),
-            role: Yup.string()
-                .oneOf([ROLES.USER, ROLES.ADMIN], 'tienes que colocar que rol tienes: User/admin')
-                .required('Role es necesario'),
+          
             password: Yup.string()
                 .min(8, 'Contraseña demasiada corta')
                 .required('Contraseña es necesaria'),
@@ -63,25 +80,25 @@ const PrincipalForm = () => {
                 validationSchema = {registerSchema}
               
                 onSubmit={async (values) => {
-                    await new Promise((r) => setTimeout(r, 1000));
-                    console.log(values); 
-                   
-                       let url='https://1b7f-201-141-113-241.ngrok.io/api/Access/SignUp/';
-                       let valor=values;
-                       fetch(url,{
-                        method:'POST',
-                        mode:'no-cors',
-                        headers:{
-                            "Content-type":"aplication/json",
-                            "Accept":"aplication/json",
-                        },
-                        body:JSON.stringify(valor)
-                       })
-                    
-                    alert(JSON.stringify(values, null, 2))
-
-
-                }}
+                  await new Promise((r) => setTimeout(r, 1000));
+                  console.log(values); 
+   
+                  let url='https://f6fc-201-141-113-241.ngrok.io/api/Access/SignUp/';
+                  let valor=values;
+                  fetch(url,{
+                     method:'POST',
+                     mode:'cors',
+                    headers:{
+                        "Content-Type":"application/json; charset=utf-8",
+                           //"Accept":"aplication/json",
+                    },
+                    body:JSON.stringify(values)
+                 }).then((data) => data.json())
+               .then( (res) => {
+                       console.log('data respuesta');
+                   alert(JSON.stringify(values, null, 2))
+                })
+               .catch( (err) => console.log('error'))}}
             >
 
             {({ isSubmitting,
@@ -149,7 +166,7 @@ const PrincipalForm = () => {
                                 )
                             }
 
-                            <button  className='btn' type="submit">Register Account</button>
+                          <button  className='btn' type="submit">Register Account</button>
                             {isSubmitting ? (<p>Enviando tus datos...</p>): null}
                              
                         </Form>

@@ -38,7 +38,7 @@ body {
 
 }
 
-.Header, .Footer {
+.Footer {
   scrollbar-color: rgba(0, 0, 0, .5) rgba(0, 0, 0, 0);
   scrollbar-width: thin;
   color: #000;
@@ -67,10 +67,11 @@ body {
 .Nav {
   width: 100%;
   
-  background-color: #333;
+  background-color: #fff;
   /** aqui elimine el flex para continuar: proximamente volver a colocar/
   /* display: flex; */
   display: flex;
+  
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
@@ -79,6 +80,7 @@ body {
 .searchForm {
   width: 80%;
   padding: 1rem 0 0 0.75rem;
+  border: none;
 }
 
 .searchForm input[type="text"] {
@@ -94,6 +96,10 @@ body {
 .searchForm label {
   position: absolute;
   left: -99999px;
+}
+#search{
+  background: #eee;
+  border: 1px solid #000;
 }
 
 .Nav ul {
@@ -114,7 +120,7 @@ body {
 }
 
 .Nav li a {
-  color: #fff;
+  color: #000;
   text-decoration: none;
 }
 
@@ -123,7 +129,7 @@ body {
 .Nav li:hover a, 
 .Nav li:focus a  {
   background-color: #eee;
-  color: #333;
+  color: #000;
 }
 
 .Nav li:hover a, 
@@ -207,8 +213,8 @@ body {
   cursor: pointer;
 }
 
-.Missing h2, .PostPage h2, 
-.Missing p, .PostPage p {
+
+.Missing p, .PostPage p,.NewPost p {
   color: #222;
   margin-bottom: 1rem;
 }
@@ -219,12 +225,17 @@ body {
   border-radius: 0.25rem;
   padding: 0.5rem;
   font-size: 1rem;
-  background-color: red;
+
   color: #fff;
   cursor: pointer;
   border: none;
 }
-
+.deleteButton{
+  background-color: red;
+}
+.editButton{
+  background-color: midnightblue;
+}
 .statusMsg {
   margin-top: 2rem;
 }
@@ -243,6 +254,7 @@ body {
     flex-wrap: nowrap;
     justify-content: space-between;
     align-items: center;
+    border: none;
   }
 
   .Nav ul {

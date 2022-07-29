@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import React from 'react';
 
+
 const Nav = ({search,setSearch}) => {
     return (
         <nav className="Nav">
@@ -9,15 +10,15 @@ const Nav = ({search,setSearch}) => {
                 <input
                     id="search"
                     type="text"
-                    placeholder="Search Posts"
+                    placeholder="Buscar publicacion"
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
                 />
             </form>
             <ul>
-                <li><Link to="/">Home</Link></li>
-                <li><Link to="/post">Post</Link></li>
-                <li><Link to="/about">About</Link></li>
+                <li className='links'><Link to="/">Publicaciones</Link></li>
+                <li className='links'><Link to="/post">Publicar</Link></li>
+                <li className='links'><Link to="/post">Pagina principal</Link></li>
             </ul>
         </nav>
     )

@@ -1,7 +1,10 @@
-.App {
-  text-align: center;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0
 }
 
+<<<<<<< HEAD
 header {
   background-color: #282c34;
   min-height: 100vh;
@@ -24,4 +27,11 @@ header {
   to {
     transform: rotate(360deg);
   }
+=======
+ul {
+  margin: 0;
+>>>>>>> origin/ajuste_home
+}
+li {
+  list-style: none;
 }

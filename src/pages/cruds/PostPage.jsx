@@ -1,5 +1,6 @@
 import React from 'react';
 import { useParams,Link } from 'react-router-dom';
+import Comments from '../../components/comentarios crud/comments';
 const PostPage = ({ posts, handleDelete }) => {
     const { id } = useParams();
     const post = posts.find(post => (post.id).toString() === id);
@@ -15,6 +16,8 @@ const PostPage = ({ posts, handleDelete }) => {
                         <Link to={`/edit/${post.id}`}><button className='editButton'>Editar publicacion</button></Link>
                       
                         <button className='deleteButton' onClick={() => handleDelete(post.id)}>eliminar publicacion</button>
+                    
+                    
                     </>
                 }
                 {!post &&
@@ -27,6 +30,7 @@ const PostPage = ({ posts, handleDelete }) => {
                     </>
                 }
             </article>
+            <Comments  currentUserId="1"/>
         </main>
     )
 }

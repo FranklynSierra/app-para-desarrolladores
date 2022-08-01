@@ -5,18 +5,18 @@
     box-sizing: border-box;
 }
 body{
-    background:#10187E;
+    background:#fff;
 }
 
 .form-register{
 width: 400px;
-background: #24303c;
+background: #fff;
 padding: 20px;
 margin: auto;
 margin-top: 100px;
 border-radius: 4px;
 font-family: 'calibri';
-color: #fff;
+color: #aaa;
 box-shadow: 7px 13px 37px #000;
 .contenedor-imagen{
     margin-top: 10px;
@@ -34,7 +34,7 @@ box-shadow: 7px 13px 37px #000;
         border-radius: 50px;
     }
 }
-h4{
+h1{
     text-align: center;
     font-size: 22px;
     margin-bottom: 20px;
@@ -43,7 +43,7 @@ h4{
 }
 .controls{
     width: 100%;
-    background: #24303c;
+    background: #ddd;
     padding: 10px;
     border-radius:4px ;
     margin-top: 16px;

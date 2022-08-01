@@ -83,22 +83,24 @@ const enviar= async (values) => {
                   await new Promise((r) => setTimeout(r, 1000));
                   console.log(values); 
    
-                  let url='https://f6fc-201-141-113-241.ngrok.io/api/Access/SignUp/';
+                  let url='https://62d5-201-141-113-241.ngrok.io/api/Access/SignUp/';
                   let valor=values;
                   fetch(url,{
                      method:'POST',
-                     mode:'cors',
+                     mode:'no-cors',
                     headers:{
-                        "Content-Type":"application/json; charset=utf-8",
-                           //"Accept":"aplication/json",
+                        "Content-Type":"application/json",
+                           
+                       "Accept":"application/json",
                     },
-                    body:JSON.stringify(values)
+                    body:JSON.stringify(valor)
                  }).then((data) => data.json())
                .then( (res) => {
                        console.log('data respuesta');
                    alert(JSON.stringify(values, null, 2))
                 })
-               .catch( (err) => console.log('error'))}}
+               .catch( (err) => alert('error')
+                )}}
             >
 
             {({ isSubmitting,

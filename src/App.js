@@ -4,16 +4,16 @@
 
 import PrincipalForm from './pages/form';
 import PageNotFound from './pages/pageNotFound';
-import Correo from './pages/login/correo';
+import { AuthProvider } from './context/AuthContext';
 import Crud from './pages/cruds/crud';
 import NewPost from './pages/cruds/NewPost';
 import {BrowserRouter,Route,Routes}from 'react-router-dom'
 import PostPage from './pages/cruds/PostPage';
 import Nav from './pages/cruds/nav';
-
+import Login from './pages/formluario nuevo/login';
 import { format, set } from 'date-fns';
 import { useState, useEffect } from 'react';
-
+import Register from './pages/formluario nuevo/Register';
 import EditPost from './pages/cruds/editPost';
 import api from './api/posts';
 import axios from 'axios';
@@ -27,8 +27,7 @@ function App() {
   const [editTitle,setEditTitle]=useState('')
   const [search,setSearch]=useState('')
   const [searchResults, setSearchResults] = useState([]);
- //                                     aqui va otra vez la url
-  //const{data,fetchError,isLoading}=useAxiosFetch('')
+
   useEffect(() => {
     const fetchPosts = async () => {
       try {
@@ -109,8 +108,9 @@ function App() {
  
  <Nav search={search}setSearch={setSearch}/>
  <Routes>
- <Route path='/form'element={ <PrincipalForm/>}></Route>
- <Route path='/Login'element={ <Correo/>}></Route>
+ <Route path='/form'element={ <Register/>}></Route>
+ 
+ <Route path='/Login'element={ <Login/>}></Route>
   <Route path='/'element={<Crud posts={searchResults}/>}></Route>
   <Route path='/post'element={<NewPost handleSubmit={handleSubmit}postTitle={postTitle}setPostTitle={setPostTitle}postBody={postBody}setPostBody={setPostBody}/>}></Route>
   <Route path='/edit/:id'element={<EditPost posts={posts} handleEdit={handleEdit}editTitle={editTitle}setEditTitle={setEditTitle}editBody={editBody}setEditBody={setEditBody}/>}></Route>

@@ -10,7 +10,7 @@ import { LatestHome } from './sections/latest/LatestHome';
 import { MainHome } from './sections/MainHome';
 import { PopularContent } from './sections/popular/Popular';
 
-export const Home = () => {
+ const Home = () => {
   return (
     <>
       <Header />
@@ -42,3 +42,4 @@ export const Home = () => {
     </>
   )
 }
+export default Home

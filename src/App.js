@@ -1,9 +1,10 @@
 import React from 'react';
 import './App.css'
-import { ChakraProvider } from '@chakra-ui/react'
+
+import HomePrincipal from './pages/homePrincipal';
 // import './styles/homePage/homepage.scss';
 
-<<<<<<< HEAD
+
 // import './styles/homePage/homepage.scss';
 
 
@@ -114,9 +115,9 @@ function App() {
  <Nav search={search}setSearch={setSearch}/>
  <Routes>
  <Route path='/form'element={ <Register/>}></Route>
- 
+  <Route path='/' element={ <HomePrincipal />}></Route>
  <Route path='/Login'element={ <Login/>}></Route>
-  <Route path='/'element={<Crud posts={searchResults}/>}></Route>
+  <Route path='publicaciones'element={<Crud posts={searchResults}/>}></Route>
   <Route path='/post'element={<NewPost handleSubmit={handleSubmit}postTitle={postTitle}setPostTitle={setPostTitle}postBody={postBody}setPostBody={setPostBody}/>}></Route>
   <Route path='/edit/:id'element={<EditPost posts={posts} handleEdit={handleEdit}editTitle={editTitle}setEditTitle={setEditTitle}editBody={editBody}setEditBody={setEditBody}/>}></Route>
   <Route path='/post/:id'element={<PostPage posts={posts}handleDelete={handleDelete}/>}></Route>
@@ -126,19 +127,7 @@ function App() {
 
   </BrowserRouter>
 </div>
-=======
-// import compu from './img/Computadora.png';
-// import logo from './img/logo-programacion-en-español.png'
-// import PrincipalForm from './pages/form';
-import { Home } from './pages/home/Home';
-function App() {
-  return (
-    <ChakraProvider>
-      {/* <PrincipalForm></PrincipalForm> */}
-      <Home />
-    </ChakraProvider>
->>>>>>> origin/ajuste_home
-  );
+  )
 }
 
 export default App;

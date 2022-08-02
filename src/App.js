@@ -25,7 +25,7 @@ import api from './api/posts';
 import axios from 'axios';
 //import useAxiosFetch from './hooks/useAxiosFetch';
 function App() {
- const api2='https://1467-201-141-113-241.ngrok.io/api/Posts/Guardar/'
+  const api2='https://1467-201-141-113-241.ngrok.io/api/Posts/Guardar/'
   const [posts, setPosts] = useState([]);
   const [postBody,setPostBody]=useState('')
   const [postTitle,setPostTitle]=useState('')
@@ -109,15 +109,15 @@ function App() {
   },[posts,search])
   return (
     <div className='App'>
-   
+    
  <BrowserRouter>
  
  <Nav search={search}setSearch={setSearch}/>
  <Routes>
- <Route path='/form'element={ <Register/>}></Route>
+ <Route path='/form'element={ <PrincipalForm/>}></Route>
   <Route path='/' element={ <HomePrincipal />}></Route>
  <Route path='/Login'element={ <Login/>}></Route>
-  <Route path='publicaciones'element={<Crud posts={searchResults}/>}></Route>
+  <Route path='/posts'element={<Crud posts={searchResults}/>}></Route>
   <Route path='/post'element={<NewPost handleSubmit={handleSubmit}postTitle={postTitle}setPostTitle={setPostTitle}postBody={postBody}setPostBody={setPostBody}/>}></Route>
   <Route path='/edit/:id'element={<EditPost posts={posts} handleEdit={handleEdit}editTitle={editTitle}setEditTitle={setEditTitle}editBody={editBody}setEditBody={setEditBody}/>}></Route>
   <Route path='/post/:id'element={<PostPage posts={posts}handleDelete={handleDelete}/>}></Route>

@@ -53,10 +53,10 @@ const enviar= async (values) => {
             username: Yup.string()
                 .min(6, 'nombre de usuario muy corto')
                 .max(12, 'nombre de usuario muy largo')
-                .required('colocar el nombre de usuario'),
+                .required('ingresar el nombre de usuario'),
             email: Yup.string()
                 .email('Formato invalido')
-                .required('coloca el correo electronico'),
+                .required('ingresa el correo electronico'),
           
             password: Yup.string()
                 .min(8, 'Contraseña demasiada corta')
@@ -119,7 +119,7 @@ const enviar= async (values) => {
                             {
                                 errors.username && touched.username && 
                                 (
-                                    <ErrorMessage name="username" component='div'></ErrorMessage>
+                                    <ErrorMessage className='error' name="username" component='div'></ErrorMessage>
                                 )
                             }
 
@@ -130,7 +130,7 @@ const enviar= async (values) => {
                             {
                                 errors.email && touched.email && 
                                 (
-                                    <ErrorMessage name="email" component='div'></ErrorMessage>
+                                    <ErrorMessage className='error' name="email" component='div'></ErrorMessage>
                                 )
                             }
 
@@ -147,7 +147,7 @@ const enviar= async (values) => {
                             {
                                 errors.password && touched.password && 
                                 (
-                                    <ErrorMessage name="password" component='div'></ErrorMessage>
+                                    <ErrorMessage className='error' name="password" component='div'></ErrorMessage>
                                 )
                             }
 
@@ -164,7 +164,7 @@ const enviar= async (values) => {
                             {
                                 errors.confirm && touched.confirm && 
                                 (
-                                    <ErrorMessage name="confirm" component='div'></ErrorMessage>
+                                    <ErrorMessage className='error' name="confirm" component='div'></ErrorMessage>
                                 )
                             }
 

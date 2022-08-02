@@ -9,6 +9,7 @@ body{
 }
 
 .form-register{
+
 width: 400px;
 background: #fff;
 padding: 20px;
@@ -16,7 +17,7 @@ margin: auto;
 margin-top: 100px;
 border-radius: 4px;
 font-family: 'calibri';
-color: #aaa;
+color: #000;
 box-shadow: 7px 13px 37px #000;
 .contenedor-imagen{
     margin-top: 10px;
@@ -40,6 +41,9 @@ h1{
     margin-bottom: 20px;
 
 
+}
+.error{
+    color:#f00;
 }
 .controls{
     width: 100%;

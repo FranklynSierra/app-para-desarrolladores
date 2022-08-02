@@ -1,7 +1,7 @@
 import { useRef, useState, useEffect } from "react";
 import '../../styles/form/form.scss'
 import axios from "../../api/axios";
-
+import { Link } from "react-router-dom";
 const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 const REGISTER_URL = '/register';
@@ -155,7 +155,7 @@ const Register = () => {
                        ¿Tienes una cuenta?<br />
                         <span className="line">
                             {/*put router link here*/}
-                            <a href="#">Iniciar sesion</a>
+                         <Link to='/login'>Iniciar Sesion</Link>
                         </span>
                     </p>
                 </section>

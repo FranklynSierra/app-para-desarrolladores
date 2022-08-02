@@ -1,10 +1,11 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Flex, 
          Box, 
          Image,
          IconButton,
          Spacer,
-         Link,
+        //  Link,
          Menu,
          MenuButton,
          MenuList,
@@ -30,9 +31,9 @@ export const Header = ( {usser = true}) => {
           <Spacer />
 
           <Box display='flex' w='30%' justifyContent='space-around'>
-            <Link cursor='pointer'>Colaboradores</Link>
-            <Link cursor='pointer'>Tienda</Link>
-            <Link cursor='pointer'>Post</Link>
+            <Link to='/' cursor='pointer'>Colaboradores</Link>
+            <Link to='/' cursor='pointer'>Tienda</Link>
+            <Link to='/posts'  cursor='pointer'>Post</Link>
           </Box>
           <Spacer />
 

@@ -16,9 +16,9 @@ const Nav = ({search,setSearch}) => {
                 />
             </form>
             <ul>
-                <li className='links'><Link to="/">Publicaciones</Link></li>
+                <li className='links'><Link to="/posts">Publicaciones</Link></li>
                 <li className='links'><Link to="/post">Publicar</Link></li>
-                <li className='links'><Link to="/post">Pagina principal</Link></li>
+                <li className='links'><Link to="/">Pagina principal</Link></li>
             </ul>
         </nav>
     )

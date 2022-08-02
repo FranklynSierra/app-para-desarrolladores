@@ -57,7 +57,7 @@ const Comment = ({
                 setActiveComment({ id: comment.id, type: "replying" })
               }
             >
-              enviar
+              responder
             </div>
           )}
           {canEdit && (

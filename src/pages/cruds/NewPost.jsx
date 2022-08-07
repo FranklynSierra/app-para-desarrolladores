@@ -1,6 +1,8 @@
 const NewPost = ({
-    handleSubmit, postTitle, setPostTitle, postBody, setPostBody
+    handleSubmit, postTitle, setPostTitle, postBody, setPostBody,task,setTask
 }) => {
+
+    const fakeData=["react","angular"]
     return (
         <main className="NewPost">
             <h2>Nueva publicacion</h2>
@@ -20,8 +22,15 @@ const NewPost = ({
                     value={postBody}
                     onChange={(e) => setPostBody(e.target.value)}
                 />
-                <button type="submit">Enviar</button>
+                <input required className='task' value={task} onChange={(e) => setTask(e.target.value)} list="lenguajes" name="lenguajes" />
+              <datalist  id="lenguajes">
+              {
+                  fakeData.map((e) => (<option value={e} />))
+                }
+              </datalist>
+              <button type="submit">Enviar</button>
             </form>
+            
         </main>
     )
 }

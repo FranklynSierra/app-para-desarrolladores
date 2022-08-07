@@ -1,17 +1,18 @@
 import React,{useEffect} from 'react';
 import { useParams,Link } from 'react-router-dom';
 const EditPost = ({
-    posts, handleEdit, editBody, setEditBody, editTitle, setEditTitle
+    posts, handleEdit, editBody, setEditBody, editTitle, setEditTitle,editTask,setEditTask
 }) => {
     const { id } = useParams();
     const post = posts.find(post => (post.id).toString() === id);
-
+    const fakeData=["react","angular"]
     useEffect(() => {
         if (post) {
             setEditTitle(post.title);
             setEditBody(post.body);
+            setEditTask(post.task)
         }
-    }, [post, setEditTitle, setEditBody])
+    }, [post, setEditTitle, setEditBody,setEditTask])
 
     return (
         <main className="NewPost">
@@ -34,8 +35,13 @@ const EditPost = ({
                             value={editBody}
                             onChange={(e) => setEditBody(e.target.value)}
                         />
-
-                     <Link to='/'> <button type="submit" onClick={() => handleEdit(post.id)}>Enviar</button></Link> 
+                    <input required className='task' value={editTask} onChange={(e) => setEditTask(e.target.value)} list="lenguajes" name="lenguajes" />
+                   <datalist  id="lenguajes">
+                   {
+                     fakeData.map((e) => (<option value={e} />))
+                   }
+              </datalist>
+                     <Link to='/posts'> <button type="submit" onClick={() => handleEdit(post.id)}>Enviar</button></Link> 
                     </form>
                 </>
             }

@@ -1,5 +1,6 @@
 import CommentForm from "./commentForm";
 import user from '../../img/imagenUsuario.png'
+
 const Comment = ({
   comment,
   replies,

@@ -10,8 +10,10 @@ const PostPage = ({ posts, handleDelete }) => {
                 {post &&
                     <>
                         <h2>{post.title}</h2>
+                        <h5>{post.task}</h5>
                         <p className="postDate">{post.datetime}</p>
                         <p className="postBody">{post.body}</p>
+
                        
                         <Link to={`/edit/${post.id}`}><button className='editButton'>Editar publicacion</button></Link>
                       

@@ -1,7 +1,32 @@
-const NewPost = ({
-    handleSubmit, postTitle, setPostTitle, postBody, setPostBody,task,setTask
-}) => {
-
+import React,{useState,useContext} from 'react';
+import DataContext from '../../context/DataContext';
+import api from '../../api/posts.js'
+import { format } from 'date-fns';
+const NewPost = () => {
+    const [postBody,setPostBody]=useState('')
+    const [postTitle,setPostTitle]=useState('')
+    const [task,setTask]=useState('')
+    const { posts,setPosts}=useContext(DataContext)
+    async function handleSubmit(e) {
+        e.preventDefault();
+        const id = posts.length ? posts[posts.length - 1].id + 1 : 1;
+        const datetime = format(new Date(), 'MMMM dd, yyyy pp');
+        const newPost = { id, title: postTitle, datetime, body: postBody,task };
+        try {
+          //                  aqui se tiene que colocar la url de la base de datos 
+          const response = await api.post('/posts', newPost);
+          const allPosts = [...posts, response.data];
+        //  const allPosts=[...posts,newPost]
+          setPosts(allPosts);
+          setPostTitle('');
+          setPostBody('');
+          setTask('')
+        } catch (err) {
+          console.log(`Error: ${err.message}`);
+        }
+    
+    
+      }
     const fakeData=["react","angular"]
     return (
         <main className="NewPost">

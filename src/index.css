@@ -136,7 +136,7 @@ h5{
 .Nav li:focus, 
 .Nav li:hover a, 
 .Nav li:focus a  {
-  background-color: #eee;
+  /* background-color: #eee; */
   color: #000;
 }
 
@@ -273,7 +273,7 @@ h5{
   .Nav li:focus, 
   .Nav li:hover a, 
   .Nav li:focus a  {
-    background-color: #eee;
+    /* background-color: #eee; */
     color: #333;
   }
 

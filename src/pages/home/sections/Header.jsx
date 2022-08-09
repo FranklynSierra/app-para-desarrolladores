@@ -21,7 +21,7 @@ export const Header = ( {usser = true}) => {
   return (
     <header>
       <nav>
-        <Flex h='60px' align='center' >
+        <Flex h='60px' align='center'>
           <Box>
             <Image src='https://bit.ly/dan-abramov' 
                    alt='Dan Abramov' w='150px' h='40px' 

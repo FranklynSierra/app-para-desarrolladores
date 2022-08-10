@@ -15,6 +15,7 @@ import { Flex,
          Text,
          HStack } from '@chakra-ui/react';
 import { SearchIcon } from '@chakra-ui/icons';
+import { Link as Enlace } from "react-router-dom";
 
 
 export const Header = ( {usser = true}) => {
@@ -23,16 +24,20 @@ export const Header = ( {usser = true}) => {
       <nav>
         <Flex h='60px' align='center'>
           <Box>
+            <Enlace to='/'>
             <Image src='https://bit.ly/dan-abramov' 
                    alt='Dan Abramov' w='150px' h='40px' 
                    objectFit='cover' ml='30px' />
+            </Enlace>
           </Box>
           <Spacer />
 
           <Box display='flex' w='30%' justifyContent='space-around'>
             <Link cursor='pointer'>Colaboradores</Link>
             <Link cursor='pointer'>Tienda</Link>
-            <Link cursor='pointer'>Post</Link>
+            <Link cursor='pointer'>
+              <Enlace to='/feed-post'>Post</Enlace>
+            </Link>
           </Box>
           <Spacer />
 
@@ -45,10 +50,15 @@ export const Header = ( {usser = true}) => {
                 </MenuButton>
                 <MenuList>
                   <MenuGroup title='Profile'>
-                    <MenuItem>My Account</MenuItem>
+                    <MenuItem>
+                      <Enlace to='/my-account'>My Account</Enlace>
+                    </MenuItem>
+                    <MenuItem>
+                      <Enlace to='/new-post'>New post</Enlace>
+                    </MenuItem>
                   </MenuGroup>
                   <MenuDivider />
-                  <MenuGroup title='Actions'>
+                  <MenuGroup title='Sesion'>
                     <MenuItem>Log Out</MenuItem>
                   </MenuGroup>
                 </MenuList>

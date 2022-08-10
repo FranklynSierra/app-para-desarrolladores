@@ -28,7 +28,7 @@ const PostNotImage = () => {
       >
                 Ver más
       </Button>
-      </Box>
+    </Box>
   )
 }
 

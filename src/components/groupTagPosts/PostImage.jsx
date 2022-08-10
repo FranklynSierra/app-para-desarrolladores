@@ -11,7 +11,8 @@ const PostImage = () => {
               borderRadius={20} overflow='hidden' boxShadow='lg' _hover={{boxShadow: '2xl'}}
     >
       <Box>
-        <Image src='https://keepcoding.io/wp-content/uploads/2022/08/como-construi-el-fichero-stulescss-para-app-de-innresos-y-gastos-768x375.jpg' alt='Esta es la foto de la publicacion'
+        <Image src='https://keepcoding.io/wp-content/uploads/2022/08/como-construi-el-fichero-stulescss-para-app-de-innresos-y-gastos-768x375.jpg' 
+        alt='Esta es la foto de la publicacion'
         w='100%'
         maxH='280px'
         mb='22px'/>

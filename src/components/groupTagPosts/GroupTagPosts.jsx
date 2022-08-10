@@ -7,7 +7,7 @@ import {  Box,
 
 const GroupTagPosts = ({title, background, children}) => {
   return (
-    <Box w='100vw' bg={!background && '#f5f5f5'}>
+    <Box bg={!background && '#f5f5f5'}>
       <Container maxW='90vw' py='25px'>
 
         <Heading mb='10px' textAlign={background && 'end'} color='blue.800'>{title}</Heading>

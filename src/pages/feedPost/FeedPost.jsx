@@ -10,22 +10,27 @@ const FeedPost = () => {
     <>
       <Header />
 
-      <GroupTagPosts title='Fundamentos de Programación' background={undefined} >
+      <GroupTagPosts title='Fundamentos de Programación' >
         <PostImage orientation='left'/>
         <PostNotImage />
       </GroupTagPosts>
 
       <GroupTagPosts title='JavaScript' background='white'>
-        <PostNotImage />
-        <PostImage orientation='right'/>
-      </GroupTagPosts>
-
-      <GroupTagPosts title='Ruby on Rails'>
-        <PostImage orientation='left'/>
+        <PostImage/>
         <PostNotImage />
       </GroupTagPosts>
+      
+      <GroupTagPosts title='Python'>
+        <PostNotImage />
+        <PostImage/>
+      </GroupTagPosts>
 
-      <GroupTagPosts title='MongoDB' background='white'>
+      <GroupTagPosts title='Ruby on Rails' background='white'>
+        <PostImage/>
+        <PostNotImage />
+      </GroupTagPosts>
+
+      <GroupTagPosts title='MongoDB' >
         <PostNotImage />
         <PostImage orientation='right'/>
       </GroupTagPosts>

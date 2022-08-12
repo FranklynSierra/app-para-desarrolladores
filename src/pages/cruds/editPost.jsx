@@ -9,14 +9,14 @@ const EditPost = () => {
   const [editTask,setEditTask]=useState('')
     const { posts,setPosts}=useContext(DataContext)
     const { id } = useParams();
-    const post = posts.find(post => (post.id).toString() === id);
+    const post = posts.find(post => (post.PostID).toString() === id);
     const fakeData=["react","angular"]
     
     useEffect(() => {
         if (post) {
-            setEditTitle(post.title);
-            setEditBody(post.body);
-            setEditTask(post.task)
+            setEditTitle(post.Title);
+            setEditBody(post.Content);
+            setEditTask(post.ProgrammingLanguage.Name)
         }
     }, [post, setEditTitle, setEditBody,setEditTask])
     const handleEdit=async(id)=>{
@@ -25,7 +25,7 @@ const EditPost = () => {
         try{
            const response = await api.put(`/posts/${id}`,updatedPost)
           //                               aqui deberia estar response.data
-          setPosts(posts.map(post=>post.id===id?{...response.data}:post))
+          setPosts(posts.map(post=>post.PostID===id?{...response.data}:post))
           setEditTitle('');
           setEditBody('');
           setEditTask('')

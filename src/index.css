@@ -181,6 +181,10 @@ h5{
   margin-top: 0.25rem;
 }
 
+.postImg {
+  width: 100%;
+}
+
 .postBody {
   margin: 1rem 0;
 }

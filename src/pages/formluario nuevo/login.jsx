@@ -3,15 +3,15 @@ import AuthContext from '../../context/AuthContext';
 import axios from '../../api/axios';
 import { Link } from "react-router-dom";
 
-const LOGIN_URL = '/auth';
+const LOGIN_URL = '/auth/login';
 
 const Login = () => {
     const { setAuth } = useContext(AuthContext);
     const userRef = useRef();
     const errRef = useRef();
 
-    const [user, setUser] = useState('');
-    const [pwd, setPwd] = useState('');
+    const [username, setUser] = useState('');
+    const [password, setPwd] = useState('');
     const [errMsg, setErrMsg] = useState('');
     const [success, setSuccess] = useState(false);
 
@@ -21,14 +21,14 @@ const Login = () => {
 
     useEffect(() => {
         setErrMsg('');
-    }, [user, pwd])
+    }, [username, password])
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         try {
             const response = await axios.post(LOGIN_URL,
-                JSON.stringify({ user, pwd }),
+                JSON.stringify({ username, password }),
                 {
                     headers: { 'Content-Type': 'application/json' },
                     withCredentials: true
@@ -38,7 +38,7 @@ const Login = () => {
             //console.log(JSON.stringify(response));
             const accessToken = response?.data?.accessToken;
             const roles = response?.data?.roles;
-            setAuth({ user, pwd, roles, accessToken });
+            setAuth({ user: username, pwd: password, roles, accessToken });
             setUser('');
             setPwd('');
             setSuccess(true);
@@ -79,7 +79,7 @@ const Login = () => {
                             ref={userRef}
                             autoComplete="off"
                             onChange={(e) => setUser(e.target.value)}
-                            value={user}
+                            value={username}
                             required
                         />
 
@@ -89,7 +89,7 @@ const Login = () => {
                             type="password"
                             id="password"
                             onChange={(e) => setPwd(e.target.value)}
-                            value={pwd}
+                            value={password}
                             required
                         />
                         <button className='btn'>Sign In</button>

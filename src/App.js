@@ -31,6 +31,7 @@ function App() {
  <Route path='/form'element={ <PrincipalForm/>}></Route>
   <Route path='/' element={ <HomePrincipal />}></Route>
   <Route path='/Login'element={ <Login/>}></Route>
+  <Route path='/register'element={ <Register/>}></Route>
   <Route path='/posts'element={<Crud />}></Route>
   <Route path='/post'element={<NewPost/>}></Route>
   <Route path='/edit/:id'element={<EditPost />}></Route>

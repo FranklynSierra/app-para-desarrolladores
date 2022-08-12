@@ -11,18 +11,26 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Profile from './pages/account/Profile';
 import PrincipalForm from './pages/form';
 import FeedPost from './pages/feedPost/FeedPost';
+import Post from './pages/individualPost/Post';
+import { PostContextProvider } from './context/PostContext';
 function App() {
   return (
     <ChakraProvider>
+      <PostContextProvider>
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/my-account' element={<Profile />} />
           <Route path='/new-post' element={<PrincipalForm />} />
-          <Route path='/feed-post' element={<FeedPost />} />
+          {/* <Route path='/feed-post' element={<FeedPost />}>
+            <Route path=':url' element={<h3>Estas en un post individual</h3>} />
+           </Route> */}
+           <Route path='/feed-post' element={<FeedPost />} />
+          <Route path='/feed-post/:url' element={<Post />} />
         </Routes>      
       </BrowserRouter>
       {/* <PrincipalForm></PrincipalForm> */}
+      </PostContextProvider>
     </ChakraProvider>
   );
 }

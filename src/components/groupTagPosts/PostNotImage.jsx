@@ -2,10 +2,13 @@ import React from 'react';
 import {  Button, Box, } from '@chakra-ui/react';
 import InformationCard from './InformationCard';
 
-const PostNotImage = () => {
+const PostNotImage = ({children}) => {
   return (
     <Box height='440px'>
-      <InformationCard 
+      {
+        children
+      }
+      {/* <InformationCard 
         title='Desarrollando una app Nativa con React' 
         fecha='20 de diciembre de 2021'
         shadow={true}
@@ -14,12 +17,7 @@ const PostNotImage = () => {
         title='Desarrollando una app Nativa con React' 
         fecha='20 de diciembre de 2021'
         shadow={true}
-      />
-      <InformationCard 
-        title='Desarrollando una app Nativa con React' 
-        fecha='20 de diciembre de 2021'
-        shadow={true}
-      />
+      /> */}
 
       <Button bg='blue.800' 
               variant='solid' 
@@ -32,4 +30,4 @@ const PostNotImage = () => {
   )
 }
 
-export default PostNotImage
+export default PostNotImage;

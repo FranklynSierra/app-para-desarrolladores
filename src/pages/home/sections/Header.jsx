@@ -51,7 +51,7 @@ export const Header = ( {usser = true}) => {
                 <MenuList>
                   <MenuGroup title='Profile'>
                     <MenuItem>
-                      <Enlace to='/my-account'>My Account</Enlace>
+                      <Enlace to='my-account'>My Account</Enlace>
                     </MenuItem>
                     <MenuItem>
                       <Enlace to='/new-post'>New post</Enlace>

@@ -1,23 +1,29 @@
 import React from 'react';
-import {  Box, 
-          Image,
-          Link } from '@chakra-ui/react';
+import {  Box, Image } from '@chakra-ui/react';
 import InformationCard from './InformationCard';
+import { Link as Enlace } from 'react-router-dom';
+import { imgExist } from '../../utils/imgExist';
+import { makeUrlPost } from '../../utils/urlPost';
 
-const PostImage = () => {
+const PostImage = ({post: postList}) => {
+  // console.log(post)
+  const post = postList[0];
   return (
 
     <Box bg='white' height='440px'
               borderRadius={20} overflow='hidden' boxShadow='lg' _hover={{boxShadow: '2xl'}}
     >
       <Box>
-        <Image src='https://keepcoding.io/wp-content/uploads/2022/08/como-construi-el-fichero-stulescss-para-app-de-innresos-y-gastos-768x375.jpg' 
-        alt='Esta es la foto de la publicacion'
-        w='100%'
-        maxH='280px'
-        mb='22px'/>
+        <Enlace to={`/feed-post/${makeUrlPost(post.headline.main)}`}>
+          <Image src={imgExist(post)} 
+          alt={post.headline.main}
+          w='100%'
+          maxH='280px'
+          mb='22px'
+          objectFit='cover'/>
+        </Enlace>
 
-        <InformationCard title='Como crear un shadow en CSS' fecha='9 de agosto de 2022' />
+        <InformationCard title={post.headline.main} post={post} fecha={post.pub_date} />
       </Box>
     </Box>
   )

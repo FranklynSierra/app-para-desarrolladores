@@ -10,16 +10,15 @@ export const DataProvider = ({ children }) => {
   
   const [search,setSearch]=useState('')
   const [searchResults, setSearchResults] = useState([]);
-  const {data,fetchError,isLoading}=useAxiosFetch('http://localhost:3500/posts')
+  const {data,fetchError,isLoading}=useAxiosFetch('http://localhost:8000/posts')
 
 useEffect(() => {
   setPosts(data)
-
 },[data]);
 useEffect(()=>{
     const filteredResults=posts.filter(post=>
-      ((post.body).toLowerCase()).includes(search.toLowerCase())
-      || ((post.title).toLowerCase()).includes(search.toLowerCase())
+      ((post.Content).toLowerCase()).includes(search.toLowerCase())
+      || ((post.Title).toLowerCase()).includes(search.toLowerCase())
       );
       setSearchResults(filteredResults.reverse())
   },[posts,search])

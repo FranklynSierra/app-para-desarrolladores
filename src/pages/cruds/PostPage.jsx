@@ -9,12 +9,12 @@ const PostPage = () => {
   
     const { posts,setPosts}=useContext(DataContext)
     const { id } = useParams();
-    const post = posts.find(post => (post.id).toString() === id);
+    const post = posts.find(post => (post.PostID).toString() === id);
     const handleDelete=async(id)=>{
         try{
     
         await api.delete(`/posts/${id}`)
-        const postList=posts.filter(post=>post.id!==id)
+        const postList=posts.filter(post=>post.PostID!==id)
         setPosts(postList)
        
         }catch(err){
@@ -27,15 +27,17 @@ const PostPage = () => {
             <article className="post">
                 {post &&
                     <>
-                        <h2>{post.title}</h2>
-                        <h5>{post.task}</h5>
-                        <p className="postDate">{post.datetime}</p>
-                        <p className="postBody">{post.body}</p>
+                        <h2>{post.Title.toUpperCase()} ({post.ProgrammingLanguage.Name})</h2>
+                        <p className="postDate">Publicado: {new Date(post.PublicationDate).toLocaleDateString()}</p>
+                        <img src={post.ImageUrl} className="postImg"/>
+                        <p className="postBody" style={{whiteSpace: "pre-line"}}>
+                            {post.Content}
+                        </p>
 
                        
-                        <Link to={`/edit/${post.id}`}><button className='editButton'>Editar publicacion</button></Link>
+                        <Link to={`/edit/${post.PostID}`}><button className='editButton'>Editar publicacion</button></Link>
                       
-                        <button className='deleteButton' onClick={() => handleDelete(post.id)}>eliminar publicacion</button>
+                        <button className='deleteButton' onClick={() => handleDelete(post.PostID)}>eliminar publicacion</button>
                     
                     
                     </>

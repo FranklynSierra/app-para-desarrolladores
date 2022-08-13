@@ -35,9 +35,7 @@ export const Header = ( {usser = true}) => {
           <Box display='flex' w='30%' justifyContent='space-around'>
             <Link cursor='pointer'>Colaboradores</Link>
             <Link cursor='pointer'>Tienda</Link>
-            <Link cursor='pointer'>
-              <Enlace to='/feed-post'>Post</Enlace>
-            </Link>
+            <Enlace to='/feed-post'>Post</Enlace>
           </Box>
           <Spacer />
 

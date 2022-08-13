@@ -5,12 +5,17 @@ import {
   Button,
   Divider, } from '@chakra-ui/react';
 import { ArrowForwardIcon } from '@chakra-ui/icons'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { makeUrlPost } from '../../utils/urlPost';
 
 
 const InformationCard = ({title, post, fecha, shadow}) => {
-  console.log(post._id)
+  // console.log(post._id)
+  const navigate = useNavigate();
+
+  const handleGoToPost = () => {
+    navigate(`/feed-post/${makeUrlPost(post.headline.main)}`, { state: { post } })
+  }
   return (
     <Box bg='white' 
          py='10px' 
@@ -21,9 +26,9 @@ const InformationCard = ({title, post, fecha, shadow}) => {
     >
       <Box px='15px' pt='5px'>
           <Text fontSize={20} fontWeight='extrabold' color='blue.800' lineHeight='25px'>
-            <Link to={`/feed-post/${makeUrlPost(title)}`}>
+          <Text onClick={handleGoToPost} cursor='pointer'>
             {title}
-            </Link>
+          </Text>
           </Text>
           <Button rightIcon={<ArrowForwardIcon />} color='#a7cfe8' variant='link' fontSize={14}>
           <Link to={`/feed-post/${makeUrlPost(title)}`}>

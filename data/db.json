@@ -2,78 +2,9 @@
   "posts": [
     {
       "id": 1,
-      "title": "1st post",
-      "datetime": "July 16, 2021 11:47:39 AM",
-      "body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-      "task": "react"
-    },
-    {
-      "id": 2,
-      "title": "Second post",
-      "datetime": "July 16, 2021 11:47:48 AM",
-      "body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. two",
-      "task": "python"
-    },
-    {
-      "id": 3,
-      "title": "Number Three",
-      "datetime": "July 16, 2021 11:48:01 AM",
-      "body": "Third post... Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-    },
-    {
-      "id": 4,
-      "title": "Testing a 4th post",
-      "datetime": "August 04, 2022 9:13:32 PM",
-      "body": "Some more testing paragraphs!",
-      "task": "react"
-    },
-    {
-      "id": 5,
-      "title": "gf",
-      "datetime": "August 08, 2022 11:45:10 AM",
-      "body": "gdfg",
-      "task": "angular"
-    },
-    {
-      "id": 6,
-      "title": "jy",
-      "datetime": "August 08, 2022 1:00:58 PM",
-      "body": "jygj",
-      "task": "angular"
-    },
-    {
-      "id": 7,
-      "title": "gg",
-      "datetime": "August 08, 2022 1:11:03 PM",
-      "body": "fdg",
-      "task": "angular"
-    },
-    {
-      "id": 8,
-      "title": "gd",
-      "datetime": "August 08, 2022 1:44:01 PM",
-      "body": "gfdf",
-      "task": "react"
-    },
-    {
-      "id": 9,
-      "title": "hfth",
-      "datetime": "August 08, 2022 1:54:51 PM",
-      "body": "hfth",
-      "task": "angular"
-    },
-    {
-      "id": 10,
-      "title": "ukkt",
-      "datetime": "August 08, 2022 1:57:04 PM",
-      "body": "fbb",
-      "task": "react"
-    },
-    {
-      "id": 11,
-      "title": "react",
-      "datetime": "August 09, 2022 7:18:09 PM",
-      "body": "angular",
+      "title": "python",
+      "datetime": "August 12, 2022 4:25:06 PM",
+      "body": "gvv",
       "task": "react"
     }
   ]

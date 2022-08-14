@@ -11,7 +11,7 @@ const NewPost = () => {
         e.preventDefault();
         const id = posts.length ? posts[posts.length - 1].id + 1 : 1;
         const datetime = format(new Date(), 'MMMM dd, yyyy pp');
-        const newPost = { id, title: postTitle, datetime, body: postBody,task };
+        const newPost = { PostId:id, Title: postTitle, PublicationDate:datetime, Content: postBody,LanguageID:task };
         try {
           //                  aqui se tiene que colocar la url de la base de datos 
           const response = await api.post('/posts', newPost);
@@ -27,7 +27,7 @@ const NewPost = () => {
     
     
       }
-    const fakeData=["react","angular"]
+    const fakeData=["react","angular"];
     return (
         <main className="NewPost">
             <h2>Nueva publicacion</h2>
@@ -48,7 +48,7 @@ const NewPost = () => {
                     onChange={(e) => setPostBody(e.target.value)}
                 />
                 <input required className='task' value={task} onChange={(e) => setTask(e.target.value)} list="lenguajes" name="lenguajes" />
-              <datalist  id="lenguajes">
+                <datalist  id="lenguajes">
               {
                   fakeData.map((e) => (<option value={e} />))
                 }

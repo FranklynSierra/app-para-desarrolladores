@@ -10,17 +10,23 @@ export const PostContextProvider = ({children}) => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    const getData = async () => {
-      // setLoading(false);
-      const dbPosts = await getPostsByTag('sports')
+    const getData = async (keyword) => {
+      const dbPosts = await getPostsByTag(keyword)
       const { docs: thePosts } = await dbPosts.response;
-      console.log(thePosts)
       setPosts(thePosts)
       setLoading(true);
 
     }
-    getData()
-  }, [])
+    getData('sports')
+  }, []);
+
+  //Esperando para determinar si va o No
+  const getPostsByTag = async (keyword) => {
+    const dbPosts = await getPostsByTag(keyword)
+    const { docs: thePosts } = await dbPosts.response;
+    setPosts(thePosts)
+    setLoading(true);
+  }
   
   const value = {
     posts,

@@ -25,10 +25,13 @@ const InformationCard = ({title, post, fecha, shadow}) => {
          mb={shadow && '15px'}
     >
       <Box px='15px' pt='5px'>
-          <Text fontSize={20} fontWeight='extrabold' color='blue.800' lineHeight='25px'>
-          <Text onClick={handleGoToPost} cursor='pointer'>
+          <Text fontSize={20} 
+                fontWeight='extrabold' 
+                color='blue.800' 
+                lineHeight='25px' 
+                onClick={handleGoToPost} 
+                cursor='pointer'>
             {title}
-          </Text>
           </Text>
           <Button rightIcon={<ArrowForwardIcon />} color='#a7cfe8' variant='link' fontSize={14}>
           <Link to={`/feed-post/${makeUrlPost(title)}`}>

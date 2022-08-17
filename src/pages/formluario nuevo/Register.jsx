@@ -86,16 +86,16 @@ const Register = () => {
                 <section>
                     <h1>Estas registrado!</h1>
                     <p>
-                        <a href="#">Sign In</a>
+                     <Link to='/posts'>ya puedes entrar</Link>
                     </p>
                 </section>
             ) : (
                 <section className="form-register" >
                     <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
-                    <h1>Register</h1>
+                    <h1>Formulario de registro</h1>
                     <form onSubmit={handleSubmit}>
                         <label htmlFor="username">
-                            Username:
+                            Nombre del usuario:
                           
                         </label>
                         <input className="controls"
@@ -114,7 +114,7 @@ const Register = () => {
                     
 
                         <label htmlFor="password">
-                            Password:
+                                Contraseña:
                           
                         </label>
                         <input 
@@ -132,7 +132,7 @@ const Register = () => {
                   
 
                         <label htmlFor="confirm_pwd">
-                            Confirm Password:
+                            Confirmar contraseña:
                            
                         </label>
                         <input
@@ -149,7 +149,7 @@ const Register = () => {
                         />
                      
 
-                        <button className="btn" disabled={!validName || !validPwd || !validMatch ? true : false}>Sign Up</button>
+                        <button disabled={!validName||!validPwd||validMatch?true:false} className="btn" >Registrarse</button>
                     </form>
                     <p>
                        ¿Tienes una cuenta?<br />

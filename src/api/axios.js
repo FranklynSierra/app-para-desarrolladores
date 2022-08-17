@@ -1,5 +1,10 @@
 import axios from 'axios';
-
+const BASE_URL='https://developer-news-back.herokuapp.com/'
 export default axios.create({
-    baseURL: 'http://localhost:8000'
+    baseURL: BASE_URL
+});
+export const axiosPrivate=axios.create({
+    baseURL: BASE_URL,
+    headers:{'Content-Type':'application/json'},
+    withCredentials:true
 });

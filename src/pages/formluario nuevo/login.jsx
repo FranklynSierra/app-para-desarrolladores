@@ -1,19 +1,21 @@
-import { useRef, useState, useEffect, useContext } from 'react';
-import AuthContext from '../../context/AuthContext';
+import { useRef, useState, useEffect } from 'react';
+import useAuth from '../../hooks/useAuth';
 import axios from '../../api/axios';
-import { Link } from "react-router-dom";
-
+import {useNavigate ,useLocation,Link} from 'react-router-dom'
 const LOGIN_URL = '/auth/login';
 
 const Login = () => {
-    const { setAuth } = useContext(AuthContext);
+    const { setAuth,persist,setPersist } = useAuth()
+    const navigate=useNavigate()
+    const location=useLocation()
+    const from=location.state?.from?.pathname||'/posts'
     const userRef = useRef();
     const errRef = useRef();
 
     const [username, setUser] = useState('');
     const [password, setPwd] = useState('');
     const [errMsg, setErrMsg] = useState('');
-    const [success, setSuccess] = useState(false);
+    // const [success, setSuccess] = useState(false);
 
     useEffect(() => {
         userRef.current.focus();
@@ -38,10 +40,10 @@ const Login = () => {
             //console.log(JSON.stringify(response));
             const accessToken = response?.data?.accessToken;
             const roles = response?.data?.roles;
-            setAuth({ user: username, pwd: password, roles, accessToken });
+            setAuth({  username,  password, roles, accessToken });
             setUser('');
             setPwd('');
-            setSuccess(true);
+            navigate(from,{replace:true})
         } catch (err) {
             if (!err?.response) {
                 setErrMsg('No Server Response');
@@ -55,21 +57,18 @@ const Login = () => {
             errRef.current.focus();
         }
     }
+    const togglePersist = () => {
+        setPersist(prev => !prev);
+    }
 
+    useEffect(() => {
+        localStorage.setItem("persist", persist);
+    }, [persist])
     return (
-        <>
-            {success ? (
-                <section>
-                    <h1>You are logged in!</h1>
-                    <br />
-                    <p>
-                        <a href="#">Go to Home</a>
-                    </p>
-                </section>
-            ) : (
+
                 <section className="form-register">
                     <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
-                    <h1>Sign In</h1>
+                    <h1>Iniciar Sesion</h1>
                     <form onSubmit={handleSubmit}>
                         <label htmlFor="username">Nombre de usuario:</label>
                         <input 
@@ -92,18 +91,22 @@ const Login = () => {
                             value={password}
                             required
                         />
-                        <button className='btn'>Sign In</button>
+                        <button className='btn'>Iniciar sesion</button>
+                         <div className='persistCheck'>
+                            <input onChange={togglePersist}checked={persist} type='checkbox'id='persist'/>
+                            <label htmlFor='persist'>dale click aqui</label>
+                         </div>
                     </form>
                     <p>
                         ¿necesitas una cuenta?<br />
                         <span className="line">
                             {/*put router link here*/}
-                           <Link to='/form'>Registrarse</Link>
+                           <Link to='/register'>Registrarse</Link>
                         </span>
                     </p>
                 </section>
-            )}
-        </>
+        //     )}
+        // </>
     )
 }
 

@@ -1,5 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link,useNavigate } from 'react-router-dom';
+import useLogout from '../../../hooks/useLogout';
 import { Flex, 
          Box, 
          Image,
@@ -19,7 +20,13 @@ import { SearchIcon } from '@chakra-ui/icons';
 
 
 export const Header = ( {usser = true}) => {
-  return (
+  const navigate=useNavigate();
+  const logout=useLogout();
+  const signOut=async()=>{
+    await logout();
+    navigate('/')
+  }
+    return (
     <header>
       <nav>
         <Flex h='60px' align='center' >
@@ -58,9 +65,9 @@ export const Header = ( {usser = true}) => {
              :
              (
               <HStack mr='20px' w='120px'>
-                <Link cursor='pointer' >Log In </Link>
+                <Link onClick={signOut()} cursor='pointer' >Log In </Link>
                 <Text>/</Text>
-                <Link cursor='pointer'> Sign In</Link>
+                <Link to='/login' cursor='pointer'> Sign In</Link>
               </HStack>
              )
              

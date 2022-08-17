@@ -23,7 +23,7 @@ body {
   flex-grow: 1;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: center; 
 }
 
 .App {
@@ -33,7 +33,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  align-items: center;
+ 
 
 
 }
@@ -76,22 +76,22 @@ h5{
   width: 100%;
   
   background-color: #fff;
-  /** aqui elimine el flex para continuar: proximamente volver a colocar/
-  /* display: flex; */
-  display: flex;
+
+ 
+   display: flex;
   
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-}
+} 
 
 .searchForm {
   width: 80%;
   padding: 1rem 0 0 0.75rem;
   border: none;
-}
+} 
 
-.searchForm input[type="text"] {
+ .searchForm input[type="text"] {
   font-family: 'Open Sans', sans-serif;
   width: 100%;
   min-height: 48px;
@@ -99,16 +99,16 @@ h5{
   padding: 0.25rem;
   border-radius: 0.25rem;
   outline: none;
-}
+} 
 
-.searchForm label {
+ .searchForm label {
   position: absolute;
   left: -99999px;
-}
-#search{
+}  
+ #search{
   background: #eee;
   border: 1px solid #000;
-}
+} 
 
 .Nav ul {
   color: #fff;
@@ -121,7 +121,7 @@ h5{
 .Nav li {
   padding: 1rem;
 }
-
+  
 .Nav li:hover, 
 .Nav li:focus {
   padding: 1rem;
@@ -130,14 +130,14 @@ h5{
 .Nav li a {
   color: #000;
   text-decoration: none;
-}
-
+}  
+  
 .Nav li:hover, 
 .Nav li:focus, 
 .Nav li:hover a, 
 .Nav li:focus a  {
-  /* background-color: #eee; */
-  color: #000;
+    background-color: #eee;  
+    color: #000;
 }
 
 .Nav li:hover a, 
@@ -151,9 +151,9 @@ h5{
   padding: 1rem;
   overflow-y: auto;
   background-color: #fff;
-}
+}   
 
-.post {
+  .post {
   margin-top: 1rem;
   padding-bottom: 1rem;
   border-bottom: 1px solid lightgray;
@@ -179,9 +179,9 @@ h5{
 .postDate {
   font-size: 0.75rem;
   margin-top: 0.25rem;
-}
+}  
 
-.postImg {
+ .postImg {
   width: 100%;
 }
 
@@ -209,9 +209,9 @@ h5{
   border-radius: 0.25rem;
   margin-right: 0.25rem;
   outline: none;
-}
+} 
 
-.newPostForm textarea {
+ .newPostForm textarea {
   height: 100px;
 }
 
@@ -223,10 +223,10 @@ h5{
   padding: 0.5rem;
   font-size: 1rem;
   cursor: pointer;
-}
+} 
 
 
-.Missing p, .PostPage p,.NewPost p {
+ .Missing p, .PostPage p,.NewPost p {
   color: #222;
   margin-bottom: 1rem;
 }
@@ -245,12 +245,12 @@ h5{
 .deleteButton{
   background-color: red;
 }
-.editButton{
+  .editButton{
   background-color: midnightblue;
-}
-.statusMsg {
+} 
+ .statusMsg {
   margin-top: 2rem;
-}
+}  
 
 @media only screen and (min-width: 610px) {
   html {
@@ -261,48 +261,48 @@ h5{
     font-size: 2rem;
   }
 
-  .Nav {
+    .Nav {
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: space-between;
     align-items: center;
     border: none;
-  }
+  }  
 
-  .Nav ul {
+    .Nav ul {
     text-align: right;
-  }
+  }   
 
-  .Nav li:hover, 
+     .Nav li:hover, 
   .Nav li:focus, 
   .Nav li:hover a, 
   .Nav li:focus a  {
-    /* background-color: #eee; */
-    color: #333;
-  }
+     background-color: #eee; 
+     color: #333;
+  }  
 
-  .searchForm {
+    .searchForm {
     width: 50%;
     padding: .5rem 0;
   }
- 
-  .searchForm input[type="text"] {
+   
+    .searchForm input[type="text"] {
     margin-left: 0.5rem;
   }
 
   .newPostForm textarea {
     height: 300px;
-  }
+  }  
 }
 
-@media only screen and (min-width: 992px) {
+  @media only screen and (min-width: 992px) {
 
   .Header svg {
     font-size: 3rem;
   }
 
-}
-.comments {
+}  
+  .comments {
   margin-top: 20px;
 }
 
@@ -313,9 +313,9 @@ h5{
 
 .comments-container {
   margin-top: 40px;
-}
+}  
 
-.comment-form-title {
+  .comment-form-title {
   font-size: 22px;
 }
 
@@ -325,8 +325,8 @@ h5{
   margin-bottom: 8px;
   margin-top: 8px;
   border: 1px solid rgb(107, 114, 12);
-}
-
+}    
+  
 .comment-form-button {
   font-size: 16px;
   padding: 8px 16px;
@@ -356,8 +356,8 @@ h5{
 
 .comment-image-container {
   margin-right: 12px;
-}
-
+}  
+  
 .comment-image-container img {
   width: 0.9rem;
   height: 0.9rem;
@@ -380,9 +380,9 @@ h5{
 
 .comment-text {
   font-size: 18px;
-}
+}  
 
-.comment-actions {
+  .comment-actions {
   display: flex;
   font-size: 12px;
   color: rgb(51, 51, 51);
@@ -400,9 +400,25 @@ h5{
 
 .replies {
   margin-top: 20px;
+}  
+.persistCheck {
+  font-size: 0.75rem;
+  margin-top: 10px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
 }
 
-/* body {
+.persistCheck label {
+  margin: 0;
+}
+
+[type="checkbox"] {
+  height: 20px;
+  width: 20px;
+  margin: 0 5px 2px 2px;
+}
+  /* body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -414,4 +430,4 @@ h5{
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
-} */
+}   */

@@ -5,8 +5,8 @@ import DataContext from '../../context/DataContext';
 import api from '../../api/posts'
 const EditPost = () => {
     const [editBody,setEditBody]=useState('')
-  const [editTitle,setEditTitle]=useState('')
-  const [editTask,setEditTask]=useState('')
+    const [editTitle,setEditTitle]=useState('')
+    const [editTask,setEditTask]=useState('')
     const { posts,setPosts}=useContext(DataContext)
     const { id } = useParams();
     const post = posts.find(post => (post.PostID).toString() === id);

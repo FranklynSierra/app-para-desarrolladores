@@ -5,12 +5,10 @@ import PostImage from '../../components/groupTagPosts/PostImage';
 import PostNotImage from '../../components/groupTagPosts/PostNotImage';
 import Spinner from '../../components/spinner/Spinner';
 import { PostContext } from '../../context/PostContext';
-import { Header } from '../home/sections/Header';
 
 const FeedPost = () => {
 
   const { posts, loading } = useContext(PostContext);
-  // console.log('desde Feed', posts)
 
   const db = [
     {
@@ -21,17 +19,17 @@ const FeedPost = () => {
 
   return (
     <>
-      <Header />
       { !loading && <Spinner />}
       { loading &&
         db.map((category) => {
-          console.log(category)
+          // console.log(category)
           const {name, posts_arr} = category;
-          console.log('db', posts_arr);
+          const initialPost = posts_arr[0];
+          console.log('db', initialPost);
           return (
             <GroupTagPosts key={name} title={name}>
-              <PostImage orientation='left' post={posts_arr} />
-              <PostNotImage>
+              <PostImage orientation='left' post={initialPost} />
+              <PostNotImage nameCategory={name} postsCategory={posts_arr}>
                 {
                   posts_arr.map((article, ind) => {
                     // console.log(ind)

@@ -5,9 +5,9 @@ import { Link as Enlace, useNavigate } from 'react-router-dom';
 import { imgExist } from '../../utils/imgExist';
 import { makeUrlPost } from '../../utils/urlPost';
 
-const PostImage = ({post: postList}) => {
-  // console.log(post)
-  const post = postList[0];
+const PostImage = ({post}) => {
+  console.log('aqui', post)
+  // const post = postList[0];
   const navigate = useNavigate();
 
   const handleGoToPost = () => {
@@ -23,7 +23,7 @@ const PostImage = ({post: postList}) => {
         <Image src={imgExist(post)} 
         alt={post.headline.main}
         w='100%'
-        maxH='280px'
+        h='240px'
         mb='22px'
         objectFit='cover'
         cursor='pointer'

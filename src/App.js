@@ -13,11 +13,14 @@ import PrincipalForm from './pages/form';
 import FeedPost from './pages/feedPost/FeedPost';
 import Post from './pages/individualPost/Post';
 import { PostContextProvider } from './context/PostContext';
+import { MorePosts } from './pages/morePost/MorePosts';
+import { Header } from './pages/home/sections/Header';
 function App() {
   return (
     <ChakraProvider>
       <PostContextProvider>
       <BrowserRouter>
+        <Header />
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/my-account' element={<Profile />} />
@@ -27,6 +30,7 @@ function App() {
            </Route> */}
            <Route path='/feed-post' element={<FeedPost />} />
           <Route path='/feed-post/:url' element={<Post />} />
+          <Route path='/category/:tag' element={<MorePosts />} />
         </Routes>      
       </BrowserRouter>
       {/* <PrincipalForm></PrincipalForm> */}

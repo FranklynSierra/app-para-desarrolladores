@@ -13,7 +13,6 @@ import { PopularContent } from './sections/popular/Popular';
 export const Home = () => {
   return (
     <>
-      <Header />
       <MainHome />
 
       <LatestHome>

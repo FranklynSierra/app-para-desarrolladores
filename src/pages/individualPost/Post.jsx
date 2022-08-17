@@ -1,7 +1,16 @@
 import React from 'react'
-import { Box, Container, Heading, HStack, Text, Image, SimpleGrid, Avatar, VStack, Spacer, Flex  } from '@chakra-ui/react';
+import { Box, 
+         Container, 
+         Heading, 
+         HStack, 
+         Text, 
+         Image, 
+         SimpleGrid, 
+         Avatar, 
+         VStack, 
+         Spacer, 
+         Flex  } from '@chakra-ui/react';
 import { useLocation } from 'react-router-dom';
-import { Header } from '../home/sections/Header';
 import { imgExist } from '../../utils/imgExist';
 import { makeDate } from '../../utils/datePost';
 
@@ -10,7 +19,6 @@ const Post = () => {
   const { post } = state;
   return (
     <>
-      <Header />
       
       <Container maxW='80%'>
         <Box>

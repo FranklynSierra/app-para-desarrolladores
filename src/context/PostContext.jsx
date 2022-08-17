@@ -21,12 +21,12 @@ export const PostContextProvider = ({children}) => {
   }, []);
 
   //Esperando para determinar si va o No
-  const getPostsByTag = async (keyword) => {
-    const dbPosts = await getPostsByTag(keyword)
-    const { docs: thePosts } = await dbPosts.response;
-    setPosts(thePosts)
-    setLoading(true);
-  }
+  // const getPostsByTag = async (keyword) => {
+  //   const dbPosts = await getPostsByTag(keyword)
+  //   const { docs: thePosts } = await dbPosts.response;
+  //   setPosts(thePosts)
+  //   setLoading(true);
+  // }
   
   const value = {
     posts,

@@ -3,14 +3,15 @@ import {
   Box,
   Text,
   Button,
-  Divider, } from '@chakra-ui/react';
+  Divider,
+  Link } from '@chakra-ui/react';
 import { ArrowForwardIcon } from '@chakra-ui/icons'
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { makeUrlPost } from '../../utils/urlPost';
+import { makeDate } from '../../utils/datePost';
 
 
 const InformationCard = ({title, post, fecha, shadow}) => {
-  // console.log(post._id)
   const navigate = useNavigate();
 
   const handleGoToPost = () => {
@@ -18,7 +19,8 @@ const InformationCard = ({title, post, fecha, shadow}) => {
   }
   return (
     <Box bg='white' 
-         py='10px' 
+         py='10px'
+         minH='127px' 
          borderRadius={20} 
          boxShadow={shadow && 'lg'}
          _hover={{boxShadow: `${shadow && '2xl'}`}}
@@ -34,14 +36,14 @@ const InformationCard = ({title, post, fecha, shadow}) => {
             {title}
           </Text>
           <Button rightIcon={<ArrowForwardIcon />} color='#a7cfe8' variant='link' fontSize={14}>
-          <Link to={`/feed-post/${makeUrlPost(title)}`}>
+          <Link onClick={handleGoToPost} py='10px'>
 
             LEER MÁS
           </Link>
           </Button>
       </Box>
       <Divider my={shadow ? '3px' : '7px'}/>
-      <Text ml='15px' color='blue.800' fontSize='14px'>Publicado el {fecha}</Text>
+      <Text ml='15px' color='blue.800' fontSize='14px'>Publicado el {makeDate(fecha)}</Text>
     </Box>
   )
 }

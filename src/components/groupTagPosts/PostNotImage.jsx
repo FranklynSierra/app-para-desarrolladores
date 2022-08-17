@@ -1,8 +1,15 @@
 import React from 'react';
 import {  Button, Box, } from '@chakra-ui/react';
-import InformationCard from './InformationCard';
+import { useNavigate } from 'react-router-dom';
+import { makeUrlPost } from '../../utils/urlPost';
 
-const PostNotImage = ({children}) => {
+const PostNotImage = ({children, nameCategory, postsCategory}) => {
+
+  const navigate = useNavigate();
+
+  const handleGoToCategory = () => {
+    navigate(`/category/${makeUrlPost(nameCategory)}`, { state: { postsCategory } })
+  }
   return (
     <Box height='440px'>
       {
@@ -23,6 +30,7 @@ const PostNotImage = ({children}) => {
               variant='solid' 
               color='white' 
               _hover={{bg: 'teal', color: 'blue.800'}}
+              onClick={handleGoToCategory}
       >
                 Ver más
       </Button>

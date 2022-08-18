@@ -9,12 +9,12 @@ import { ChakraProvider } from '@chakra-ui/react'
 import { Home } from './pages/home/Home';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Profile from './pages/account/Profile';
-import PrincipalForm from './pages/form';
 import FeedPost from './pages/feedPost/FeedPost';
 import Post from './pages/individualPost/Post';
 import { PostContextProvider } from './context/PostContext';
 import { MorePosts } from './pages/morePost/MorePosts';
 import { Header } from './pages/home/sections/Header';
+import NewPost from './pages/newPost/NewPost';
 function App() {
   return (
     <ChakraProvider>
@@ -24,7 +24,7 @@ function App() {
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/my-account' element={<Profile />} />
-          <Route path='/new-post' element={<PrincipalForm />} />
+          <Route path='/new-post' element={<NewPost />} />
           {/* <Route path='/feed-post' element={<FeedPost />}>
             <Route path=':url' element={<h3>Estas en un post individual</h3>} />
            </Route> */}

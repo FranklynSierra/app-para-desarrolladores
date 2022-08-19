@@ -3,7 +3,7 @@ import '../../styles/form/form.scss'
 import axios from "../../api/axios";
 import { Link } from "react-router-dom";
 const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
-const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
+const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!*@#$%]).{8,24}$/;
 const REGISTER_URL = '/auth/register';
 
 const Register = () => {
@@ -86,7 +86,7 @@ const Register = () => {
                 <section>
                     <h1>Estas registrado!</h1>
                     <p>
-                     <Link to='/posts'>ya puedes entrar</Link>
+                     <Link to='/login'>ahora puedes registrate</Link>
                     </p>
                 </section>
             ) : (
@@ -149,7 +149,7 @@ const Register = () => {
                         />
                      
 
-                        <button disabled={!validName||!validPwd||validMatch?true:false} className="btn" >Registrarse</button>
+                        <button  >Registrarse</button>
                     </form>
                     <p>
                        ¿Tienes una cuenta?<br />

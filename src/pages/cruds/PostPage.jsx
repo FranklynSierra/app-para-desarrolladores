@@ -27,6 +27,7 @@ const PostPage = () => {
             <article className="post">
                 {post &&
                     <>
+                    
                         <h2>{post.Title.toUpperCase()} ({post.ProgrammingLanguage.Name})</h2>
                         <p className="postDate">Publicado: {new Date(post.PublicationDate).toLocaleDateString()}</p>
                         <img src={post.ImageUrl} className="postImg"/>

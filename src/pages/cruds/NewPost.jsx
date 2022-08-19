@@ -1,17 +1,30 @@
-import React,{useState,useContext} from 'react';
+import React,{useState,useContext,useEffect} from 'react';
 import DataContext from '../../context/DataContext';
 import api from '../../api/posts.js'
+import AsyncSelect from 'react-select'
 import { format } from 'date-fns';
 const NewPost = () => {
     const [postBody,setPostBody]=useState('')
     const [postTitle,setPostTitle]=useState('')
+    const [images, setImages] = useState([]);
+    const [imageURL, setImageURL,] = useState([]);
+    function onImageChange(e){
+     setImages([...e.target.files])
+    } 
+    useEffect(()=>{
+      if(images.length<1)return;
+      const newImageUrls=[];
+      images.forEach(image=>newImageUrls.push(URL.createObjectURL(image)))
+      setImageURL(newImageUrls)
+     },[images])
+ 
     const [task,setTask]=useState('')
     const { posts,setPosts}=useContext(DataContext)
     async function handleSubmit(e) {
         e.preventDefault();
         const id = posts.length ? posts[posts.length - 1].id + 1 : 1;
         const datetime = format(new Date(), 'MMMM dd, yyyy pp');
-        const newPost = { PostId:id, Title: postTitle, PublicationDate:datetime, Content: postBody,LanguageID:task };
+        const newPost = { PostId:id, Title: postTitle, PublicationDate:datetime, Content: postBody,LanguageID:task,imageURL };
         try {
           //                  aqui se tiene que colocar la url de la base de datos 
           const response = await api.post('/posts', newPost);
@@ -21,6 +34,7 @@ const NewPost = () => {
           setPostTitle('');
           setPostBody('');
           setTask('')
+          setImageURL([])
         } catch (err) {
           console.log(`Error: ${err.message}`);
         }
@@ -47,15 +61,17 @@ const NewPost = () => {
                     value={postBody}
                     onChange={(e) => setPostBody(e.target.value)}
                 />
-                <input required className='task' value={task} onChange={(e) => setTask(e.target.value)} list="lenguajes" name="lenguajes" />
+                <input  required className='task' value={task} onChange={(e) => setTask(e.target.value)} list="lenguajes" name="lenguajes" />
                 <datalist  id="lenguajes">
               {
                   fakeData.map((e) => (<option value={e} />))
                 }
               </datalist>
+              <input type='file'multiple onChange={onImageChange}/>
+            {imageURL.map(imageSrc=><img style={{width:'300px',heigth:'300px'}} src={imageSrc}/>)}
               <button type="submit">Enviar</button>
             </form>
-            
+          
         </main>
     )
 }

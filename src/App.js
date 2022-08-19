@@ -13,7 +13,7 @@ import PostPage from './pages/cruds/PostPage';
 import Nav from './pages/cruds/nav';
 import Login from './pages/formluario nuevo/login';
 
-
+import Imagen from './components/imagen';
 import Register from './pages/formluario nuevo/Register';
 import EditPost from './pages/cruds/editPost';
 import PersistLogin from './components/PersistLogin';
@@ -28,7 +28,7 @@ function App() {
  <DataProvider>
  <Nav />
  <Routes>
- 
+  <Route path='/image'element={<Imagen></Imagen>}/>
   <Route path='/' element={ <HomePrincipal />}></Route>
   <Route path='/Login'element={ <Login/>}></Route>
   <Route path='/register'element={ <Register/>}></Route>

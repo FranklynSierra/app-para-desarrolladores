@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link,useNavigate } from 'react-router-dom';
 import useLogout from '../../../hooks/useLogout';
+import '../../../styles/nav/nav.scss' 
 import { Flex, 
          Box, 
          Image,
@@ -17,6 +18,7 @@ import { Flex,
          Text,
          HStack } from '@chakra-ui/react';
 import { SearchIcon } from '@chakra-ui/icons';
+import { Link as Enlace } from "react-router-dom";
 
 
 export const Header = ( {usser = true}) => {
@@ -28,19 +30,23 @@ export const Header = ( {usser = true}) => {
   }
     return (
     <header>
-      <nav>
-        <Flex h='60px' align='center' >
+      <nav className='nav'>
+        <Flex className='menu-nav' h='60px' align='center'>
           <Box>
+            <Enlace to='/'>
             <Image src='https://bit.ly/dan-abramov' 
                    alt='Dan Abramov' w='150px' h='40px' 
                    objectFit='cover' ml='30px' />
+            </Enlace>
           </Box>
           <Spacer />
 
-          <Box display='flex' w='30%' justifyContent='space-around'>
-            <Link to='/' cursor='pointer'>Colaboradores</Link>
-            <Link to='/' cursor='pointer'>Tienda</Link>
+          <Box className='item' display='flex' w='30%' justifyContent='space-around'>
+
             <Link to='/posts'  cursor='pointer'>Post</Link>
+             <Link to='/post'  cursor='pointer'>crear publicacion</Link>
+            <Enlace to='/feed-post'>Post</Enlace>
+
           </Box>
           <Spacer />
 
@@ -53,10 +59,15 @@ export const Header = ( {usser = true}) => {
                 </MenuButton>
                 <MenuList>
                   <MenuGroup title='Profile'>
-                    <MenuItem>My Account</MenuItem>
+                    <MenuItem>
+                      <Enlace to='my-account'>My Account</Enlace>
+                    </MenuItem>
+                    <MenuItem>
+                      <Enlace to='/new-post'>New post</Enlace>
+                    </MenuItem>
                   </MenuGroup>
                   <MenuDivider />
-                  <MenuGroup title='Actions'>
+                  <MenuGroup title='Sesion'>
                     <MenuItem>Log Out</MenuItem>
                   </MenuGroup>
                 </MenuList>

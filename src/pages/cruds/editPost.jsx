@@ -1,12 +1,24 @@
 import React,{useState,useEffect,useContext} from 'react';
 import { useParams,Link } from 'react-router-dom';
 import { format } from 'date-fns';
+import { Box, Container,Input, Textarea } from '@chakra-ui/react';
 import DataContext from '../../context/DataContext';
 import api from '../../api/posts'
 const EditPost = () => {
     const [editBody,setEditBody]=useState('')
     const [editTitle,setEditTitle]=useState('')
     const [editTask,setEditTask]=useState('')
+    const [editImages, setEditImages] = useState([]);
+    const [editImageURL, setEditImageURL,] = useState([]);
+    function onImageChange(e){
+     setEditImages([...e.target.files])
+    } 
+    useEffect(()=>{
+      if(editImages.length<1)return;
+      const newImageUrls=[];
+      editImages.forEach(image=>newImageUrls.push(URL.createObjectURL(image)))
+      setEditImageURL(newImageUrls)
+     },[editImages])
     const { posts,setPosts}=useContext(DataContext)
     const { id } = useParams();
     const post = posts.find(post => (post.PostID).toString() === id);
@@ -21,7 +33,7 @@ const EditPost = () => {
     }, [post, setEditTitle, setEditBody,setEditTask])
     const handleEdit=async(id)=>{
         const datetime = format(new Date(), 'MMMM dd, yyyy pp');
-        const updatedPost= { id, title: editTitle, datetime, body: editBody,task:editTask };
+        const updatedPost= { PostId:id, Title: editTitle, PublicationDate: datetime, Content: editBody,LanguageID:editTask,imageURL:editImages };
         try{
            const response = await api.put(`/posts/${id}`,updatedPost)
           //                               aqui deberia estar response.data
@@ -34,13 +46,19 @@ const EditPost = () => {
         }
       }
     return (
+        <Box pt='200px' px='20px' bg='blackAlpha.50' h='calc(100vh - 60px)' display='flex' alignItems='center'>
         <main className="NewPost">
             {editTitle &&
                 <>
                     <h2>Editar Publicacion</h2>
+                <Container maxW='85%' 
+                 border='2px solid #ebebeb' 
+                 boxShadow='md' 
+                 borderRadius={6} 
+                 >
                     <form className="newPostForm" onSubmit={(e) => e.preventDefault()}>
                         <label htmlFor="postTitle">Titulo:</label>
-                        <input
+                        <Input
                             id="postTitle"
                             type="text"
                             required
@@ -48,20 +66,29 @@ const EditPost = () => {
                             onChange={(e) => setEditTitle(e.target.value)}
                         />
                         <label htmlFor="postBody">Publicacion:</label>
-                        <textarea
+                        <Textarea
+                        placeholder='Edite tu blogpost' 
+                  resize='none' 
+                  size='lg' 
+                  h='250px' 
+                  bg='white'
+                  mt='20px'
                             id="postBody"
                             required
                             value={editBody}
                             onChange={(e) => setEditBody(e.target.value)}
                         />
-                    <input required className='task' value={editTask} onChange={(e) => setEditTask(e.target.value)} list="lenguajes" name="lenguajes" />
+                    <Input required className='task' value={editTask} onChange={(e) => setEditTask(e.target.value)} list="lenguajes" name="lenguajes" />
                    <datalist  id="lenguajes">
                    {
                      fakeData.map((e) => (<option value={e} />))
                    }
               </datalist>
+              <Input type='file'multiple onChange={onImageChange}/>
+              {editImageURL.map(imageSrc=><img style={{width:'300px',heigth:'300px'}} src={imageSrc}/>)}
                      <Link to='/posts'> <button type="submit" onClick={() => handleEdit(post.id)}>Enviar</button></Link> 
                     </form>
+                    </Container>
                 </>
             }
             {!editTitle &&
@@ -74,6 +101,7 @@ const EditPost = () => {
                 </>
             }
         </main>
+        </Box>
     )
 }
 

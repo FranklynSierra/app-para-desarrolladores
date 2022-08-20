@@ -1,6 +1,7 @@
 import React,{useState,useContext,useEffect} from 'react';
 import DataContext from '../../context/DataContext';
 import api from '../../api/posts.js'
+import { Box, Container,Input, Textarea } from '@chakra-ui/react';
 import AsyncSelect from 'react-select'
 import { format } from 'date-fns';
 const NewPost = () => {
@@ -43,11 +44,18 @@ const NewPost = () => {
       }
     const fakeData=["react","angular"];
     return (
+      <Box pt='200px' px='20px' bg='blackAlpha.50' h='calc(100vh - 60px)' display='flex' alignItems='center'>
         <main className="NewPost">
             <h2>Nueva publicacion</h2>
+            <Container maxW='85%' 
+                 border='2px solid #ebebeb' 
+                 boxShadow='md' 
+                 borderRadius={6} 
+                 >
+                 
             <form className="newPostForm" onSubmit={handleSubmit}>
                 <label htmlFor="postTitle">Titulo:</label>
-                <input
+                <Input
                     id="postTitle"
                     type="text"
                     required
@@ -55,24 +63,35 @@ const NewPost = () => {
                     onChange={(e) => setPostTitle(e.target.value)}
                 />
                 <label htmlFor="postBody">Publicar:</label>
-                <textarea
-                    id="postBody"
-                    required
+                  <Textarea required
                     value={postBody}
                     onChange={(e) => setPostBody(e.target.value)}
-                />
-                <input  required className='task' value={task} onChange={(e) => setTask(e.target.value)} list="lenguajes" name="lenguajes" />
+                
+                   placeholder='Sorpréndenos con tu blogpost' 
+                  resize='none' 
+                  size='lg' 
+                  h='250px' 
+                  bg='white'
+                  mt='20px'
+                  
+                  >
+
+        </Textarea>
+                <Input  required className='task' value={task} onChange={(e) => setTask(e.target.value)} list="lenguajes" name="lenguajes" />
                 <datalist  id="lenguajes">
               {
                   fakeData.map((e) => (<option value={e} />))
                 }
               </datalist>
-              <input type='file'multiple onChange={onImageChange}/>
+              <Input type='file'multiple onChange={onImageChange}/>
             {imageURL.map(imageSrc=><img style={{width:'300px',heigth:'300px'}} src={imageSrc}/>)}
               <button type="submit">Enviar</button>
             </form>
+          </Container>
+
           
         </main>
+        </Box>
     )
 }
 

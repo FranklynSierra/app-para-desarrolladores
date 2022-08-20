@@ -16,11 +16,7 @@ const Nav = () => {
                     onChange={(e) => setSearch(e.target.value)}
                 />
             </form>
-            <ul>
-                <li className='links'><Link to="/posts">Publicaciones</Link></li>
-                <li className='links'><Link to="/post">Publicar</Link></li>
-                <li className='links'><Link to="/">Pagina principal</Link></li>
-            </ul>
+         
         </nav>
     )
 }

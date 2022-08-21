@@ -31,8 +31,8 @@ const Comments = ({ commentsUrl, currentUserId }) => {
   const updateComment = (text, commentId) => {
     updateCommentApi(text).then(() => {
       const updatedBackendComments = backendComments.map((backendComment) => {
-        if (backendComment.id === commentId) {
-          return { ...backendComment, body: text };
+        if (backendComment.PostId === commentId) {
+          return { ...backendComment, Content: text };
         }
         return backendComment;
       });
@@ -44,7 +44,7 @@ const Comments = ({ commentsUrl, currentUserId }) => {
     if (window.confirm("Are you sure you want to remove comment?")) {
       deleteCommentApi().then(() => {
         const updatedBackendComments = backendComments.filter(
-          (backendComment) => backendComment.id !== commentId
+          (backendComment) => backendComment.PostId !==  commentId
         );
         setBackendComments(updatedBackendComments);
       });
@@ -65,9 +65,9 @@ const Comments = ({ commentsUrl, currentUserId }) => {
       <div className="comments-container">
         {rootComments.map((rootComment) => (
           <Comment
-            key={rootComment.id}
+            key={rootComment.PostId}
             comment={rootComment}
-            replies={getReplies(rootComment.id)}
+            replies={getReplies(rootComment.PostId)}
             activeComment={activeComment}
             setActiveComment={setActiveComment}
             addComment={addComment}

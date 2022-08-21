@@ -14,7 +14,7 @@ export const getComments = async () => {
   
   export const createComment = async (text, parentId = null) => {
     return {
-      id: Math.random().toString(36).substr(2, 9),
+      PostId: Math.random().toString(36).substr(2, 9),
       Content: text,
       parentId,
       userId: "1",

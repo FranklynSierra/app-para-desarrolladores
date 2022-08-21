@@ -29,7 +29,7 @@ const Comment = ({
   const replyId = parentId ? parentId : comment.PostId;
   const PublicationDate = new Date(comment.PublicationDate).toLocaleDateString();
   return (
-    <div key={comment.id} className="comment">
+    <div key={comment.PostId} className="comment">
       <div className="comment-image-container">
         <img src={user}/>
       </div>
@@ -55,7 +55,7 @@ const Comment = ({
             <div
               className="comment-action"
               onClick={() =>
-                setActiveComment({ id: comment.id, type: "replying" })
+                setActiveComment({ id: comment.PostId, type: "replying" })
               }
             >
               responder
@@ -91,7 +91,7 @@ const Comment = ({
             {replies.map((reply) => (
               <Comment
                 comment={reply}
-                key={reply.id}
+                key={reply.PostId}
                 setActiveComment={setActiveComment}
                 activeComment={activeComment}
                 updateComment={updateComment}

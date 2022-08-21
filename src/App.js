@@ -7,13 +7,13 @@ import Profile from './pages/account/Profile';
 import FeedPostPage from './pages/feedPostPage';
 import Post from './pages/individualPost/Post';
 import { PostContextProvider } from './context/PostContext';
-import { MorePosts } from './pages/morePost/MorePosts';
+
 import { ChakraProvider } from '@chakra-ui/react'
 import { Header } from './pages/home/sections/Header';
 // import NewPost from './pages/newPost/NewPost';
 import HomePrincipal from './pages/homePrincipal';
 import RequireAuth from './pages/requireAuth';
-
+import MorePostsPage from './pages/MorePost';
 import PageNotFound from './pages/pageNotFound';
 
 import Crud from './pages/cruds/crud';
@@ -53,7 +53,7 @@ function App() {
    
  <Route path='/feed-post' element={<FeedPostPage />} />
  <Route path='/feed-post/:url' element={<Post />} />
- <Route path='/category/:tag' element={<MorePosts />} />
+ <Route path='/category/:tag' element={<MorePostsPage />} />
   {/* <Route element={<PersistLogin/>}>
   <Route element={<RequireAuth />}> */}
     <Route path='/post'element={<NewPost/>}></Route>

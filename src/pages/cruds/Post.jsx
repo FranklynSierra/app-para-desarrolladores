@@ -4,6 +4,7 @@ import {
     Box,
     Text,
     Button,
+    Divider
 
     } from '@chakra-ui/react';
 
@@ -56,6 +57,7 @@ const Post = ({post}) => {
                     : `${(post.Content).slice(0, 25)}...`
             }</p>
         </Text>
+        <Divider my={shadow ? '3px' : '7px'}/>
             <Button rightIcon={<ArrowForwardIcon />} color='#a7cfe8' variant='link' fontSize={14}>
           <Link to={`post/${post.PostID}`} py='10px'>
 

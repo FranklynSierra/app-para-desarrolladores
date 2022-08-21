@@ -7,7 +7,7 @@ const Nav = () => {
     return (
         <nav className="Nav">
             <form className="searchForm" onSubmit={(e) => e.preventDefault()}>
-                <label htmlFor="search">Search Posts</label>
+                <label htmlFor="search">Publicaciones</label>
                 <input
                     id="search"
                     type="text"

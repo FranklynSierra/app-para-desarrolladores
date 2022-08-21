@@ -42,11 +42,11 @@ function App() {
  <Routes>
 
   {/* <Route path='/' element={ <HomePrincipal />}></Route> */}
-  <Route path='/Login'element={ <Login/>}></Route>
+   <Route path='/Login'element={ <Login/>}></Route>
   <Route path='/register'element={ <Register/>}></Route>
   <Route path='/posts'element={<Crud />}></Route>
   <Route path='*'element={<PageNotFound/>}></Route>
-  <Route path='/post/:id'element={<PostPage />}></Route>
+  <Route path='/post/:id'element={<PostPage />}></Route> 
   <Route path='/' element={<Home />} />
   <Route path='/my-account' element={<Profile />} />
   <Route path='/new-post' element={<NewPost />} />
@@ -57,7 +57,7 @@ function App() {
   {/* <Route element={<PersistLogin/>}>
   <Route element={<RequireAuth />}> */}
     <Route path='/post'element={<NewPost/>}></Route>
-    <Route path='/edit/:id'element={<EditPost />}></Route>
+    <Route path='/edit/:id'element={<EditPost />}></Route> 
    
    {/* </Route>
   </Route>  */}

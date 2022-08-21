@@ -4,16 +4,16 @@ import InformationCard from '../../components/groupTagPosts/InformationCard';
 import PostImage from '../../components/groupTagPosts/PostImage';
 import PostNotImage from '../../components/groupTagPosts/PostNotImage';
 import Spinner from '../../components/spinner/Spinner';
-import { PostContext } from '../../context/PostContext';
+import DataContext from '../../context/DataContext';
 
 const FeedPost = () => {
 
-  const { posts, loading } = useContext(PostContext);
+  const { post, loading } = useContext(DataContext);
 
   const db = [
     {
       name: 'Fundamentos de Programacion',
-      posts_arr: posts  
+      posts_arr: post 
     }
   ];
 

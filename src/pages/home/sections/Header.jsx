@@ -43,9 +43,9 @@ export const Header = ( {usser = true}) => {
 
           <Box className='item' display='flex' w='30%' justifyContent='space-around'>
 
-            <Link to='/posts'  cursor='pointer'>Post</Link>
+            <Link to='/posts'  cursor='pointer'>Posts</Link>
              <Link to='/post'  cursor='pointer'>crear publicacion</Link>
-            <Enlace to='/feed-post'>Post</Enlace>
+            <Link to='/feed-post'>Tecnologias</Link>
 
           </Box>
           <Spacer />
@@ -68,7 +68,7 @@ export const Header = ( {usser = true}) => {
                   </MenuGroup>
                   <MenuDivider />
                   <MenuGroup title='Sesion'>
-                    <MenuItem>Log Out</MenuItem>
+                    <MenuItem >Log Out</MenuItem>
                   </MenuGroup>
                 </MenuList>
               </Menu>
@@ -76,7 +76,7 @@ export const Header = ( {usser = true}) => {
              :
              (
               <HStack mr='20px' w='120px'>
-                <Link onClick={signOut()} cursor='pointer' >Log In </Link>
+                <Link to='/register' cursor='pointer' >Log In </Link>
                 <Text>/</Text>
                 <Link to='/login' cursor='pointer'> Sign In</Link>
               </HStack>

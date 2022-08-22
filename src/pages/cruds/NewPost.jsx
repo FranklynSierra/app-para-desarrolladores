@@ -26,7 +26,7 @@ const NewPost = () => {
         e.preventDefault();
         const id = posts.length ? posts[posts.length - 1].id + 1 : 1;
         const datetime = format(new Date(), 'MMMM dd, yyyy pp');
-        const newPost = { PostId:id, Title: postTitle, PublicationDate:datetime, Content: postBody,LanguageID:Number(task),imageURL };
+        const newPost = { PostId:id, Title: postTitle, PublicationDate:datetime, Content: postBody,LanguageID:task,imageURL };
         try {
           //                  aqui se tiene que colocar la url de la base de datos 
           const response = await api.post('/posts', newPost, {

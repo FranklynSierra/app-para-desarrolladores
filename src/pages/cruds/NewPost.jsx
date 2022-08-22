@@ -4,10 +4,12 @@ import api from '../../api/posts.js'
 import { Box, Container,Input, Textarea } from '@chakra-ui/react';
 import AsyncSelect from 'react-select'
 import { format } from 'date-fns';
+import axios from 'axios';
 const NewPost = () => {
     const [postBody,setPostBody]=useState('')
     const [postTitle,setPostTitle]=useState('')
     const [images, setImages] = useState([]);
+    const [apis, setApis] = useState([]);
     const [imageURL, setImageURL,] = useState([]);
     function onImageChange(e){
      setImages([...e.target.files])
@@ -42,7 +44,19 @@ const NewPost = () => {
     
     
       }
-    const fakeData=["react","angular"];
+
+    useEffect(() => {
+      const apiConsumir=async()=>{
+        const url='https://developer-news-back.herokuapp.com/programming-languages'
+        const result=await axios.get(url)
+       
+        setApis(result.data)
+      };
+      apiConsumir()
+    }, []);
+  
+
+   
     return (
       <Box pt='200px' px='20px' bg='blackAlpha.50' h='calc(100vh - 60px)' display='flex' alignItems='center'>
         <main className="NewPost">
@@ -79,9 +93,13 @@ const NewPost = () => {
         </Textarea>
                 <Input  required className='task' value={task} onChange={(e) => setTask(e.target.value)} list="lenguajes" name="lenguajes" />
                 <datalist  id="lenguajes">
-              {
-                  fakeData.map((e) => (<option value={e} />))
-                }
+              
+                 {apis.length===0&&<p>cargando</p>}
+                 {apis.map((api,i)=>{
+
+                  return(<option key={i}>{api.Name}</option>)
+                 })}
+                
               </datalist>
               <Input type='file'multiple onChange={onImageChange}/>
             {imageURL.map(imageSrc=><img style={{width:'300px',heigth:'300px'}} src={imageSrc}/>)}

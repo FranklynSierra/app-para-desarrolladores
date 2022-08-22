@@ -59,7 +59,7 @@ const Post = ({post}) => {
         </Text>
         <Divider my={shadow ? '3px' : '7px'}/>
             <Button rightIcon={<ArrowForwardIcon />} color='#a7cfe8' variant='link' fontSize={14}>
-          <Link to={`post/${post.PostID}`} py='10px'>
+          <Link to={`/post/${post.PostID}`} py='10px'>
 
             LEER MÁS
           </Link>

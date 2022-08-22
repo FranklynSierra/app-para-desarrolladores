@@ -79,7 +79,7 @@ const PostPage = () => {
                     </>
                 }
             </article>
-            <Comments  currentUserId="1"/>
+            <Comments key={posts.PostID} currentUserId='1'/>
         </Container>
         </>
     )

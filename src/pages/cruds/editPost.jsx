@@ -5,7 +5,9 @@ import { Box, Container,Input, Textarea } from '@chakra-ui/react';
 import DataContext from '../../context/DataContext';
 import api from '../../api/posts'
 const EditPost = () => {
+    
     const [editBody,setEditBody]=useState('')
+    const [apis, setApis] = useState([]);
     const [editTitle,setEditTitle]=useState('')
     const [editTask,setEditTask]=useState('')
     const [editImages, setEditImages] = useState([]);
@@ -13,6 +15,17 @@ const EditPost = () => {
     function onImageChange(e){
      setEditImages([...e.target.files])
     } 
+    useEffect(() => {
+        const apiConsumir=async()=>{
+          const url='https://developer-news-back.herokuapp.com/programming-languages'
+          const result=await api.get(url)
+         
+          setApis(result.data)
+        };
+        apiConsumir()
+      }, []);
+    
+  
     useEffect(()=>{
       if(editImages.length<1)return;
       const newImageUrls=[];
@@ -80,9 +93,12 @@ const EditPost = () => {
                         />
                     <Input required className='task' value={editTask} onChange={(e) => setEditTask(e.target.value)} list="lenguajes" name="lenguajes" />
                    <datalist  id="lenguajes">
-                   {
-                     fakeData.map((e) => (<option value={e} />))
-                   }
+                   {apis.length===0&&<p>cargando</p>}
+                 {apis.map((api,i)=>{
+
+                  return(<option key={i}>{api.Name}</option>)
+                 })}
+                
               </datalist>
               <Input type='file'multiple onChange={onImageChange}/>
               {editImageURL.map(imageSrc=><img style={{width:'300px',heigth:'300px'}} src={imageSrc}/>)}

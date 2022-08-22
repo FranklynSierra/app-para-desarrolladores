@@ -1,35 +1,24 @@
 import CommentForm from "./commentForm";
 import user from '../../img/imagenUsuario.png'
 
-const Comment = ({
-  comment,
-  replies,
-  setActiveComment,
-  activeComment,
-  updateComment,
-  deleteComment,
-  addComment,
-  parentId = null,
-  currentUserId,
-}) => {
+const Comment = ({comment, replies, setActiveComment, activeComment, updateComment, deleteComment, addComment, parentId = null, currentUserId,}) => {
   const isEditing =
     activeComment &&
-    activeComment.id === comment.PostId &&
+    activeComment.id === comment.CommentID &&
     activeComment.type === "editing";
   const isReplying =
     activeComment &&
-    activeComment.id === comment.PostId &&
+    activeComment.id === comment.CommentID &&
     activeComment.type === "replying";
   const fiveMinutes = 300000;
   const timePassed = new Date() - new Date(comment.PublicationDate) > fiveMinutes;
-  const canDelete =
-    currentUserId === comment.userId && replies.length === 0 && !timePassed;
+  const canDelete =  currentUserId === comment.userId && replies.length === 0 && !timePassed;
   const canReply = Boolean(currentUserId);
   const canEdit = currentUserId === comment.userId && !timePassed;
-  const replyId = parentId ? parentId : comment.PostId;
+  const AnsweredID = parentId ? parentId : comment.CommentID;
   const PublicationDate = new Date(comment.PublicationDate).toLocaleDateString();
   return (
-    <div key={comment.PostId} className="comment">
+    <div key={comment.CommentID} className="comment">
       <div className="comment-image-container">
         <img src={user}/>
       </div>
@@ -44,7 +33,7 @@ const Comment = ({
             submitLabel="Update"
             hasCancelButton
             initialText={comment.Content}
-            handleSubmit={(text) => updateComment(text, comment.PostId)}
+            handleSubmit={(text) => updateComment(text, comment.CommentID)}
             handleCancel={() => {
               setActiveComment(null);
             }}
@@ -55,7 +44,7 @@ const Comment = ({
             <div
               className="comment-action"
               onClick={() =>
-                setActiveComment({ id: comment.PostId, type: "replying" })
+                setActiveComment({ id: comment.CommentID, type: "replying" })
               }
             >
               responder
@@ -65,7 +54,7 @@ const Comment = ({
             <div
               className="comment-action"
               onClick={() =>
-                setActiveComment({ id: comment.PostId, type: "editing" })
+                setActiveComment({ id: comment.CommentID, type: "editing" })
               }
             >
               Editar
@@ -74,7 +63,7 @@ const Comment = ({
           {canDelete && (
             <div
               className="comment-action"
-              onClick={() => deleteComment(comment.PostId)}
+              onClick={() => deleteComment(comment.CommentID)}
             >
               eliminar
             </div>
@@ -83,7 +72,7 @@ const Comment = ({
         {isReplying && (
           <CommentForm
             submitLabel="Reply"
-            handleSubmit={(text) => addComment(text, replyId)}
+            handleSubmit={(text) => addComment(text, AnsweredID)}
           />
         )}
         {replies.length > 0 && (
@@ -91,13 +80,13 @@ const Comment = ({
             {replies.map((reply) => (
               <Comment
                 comment={reply}
-                key={reply.PostId}
+                key={reply.CommentID}
                 setActiveComment={setActiveComment}
                 activeComment={activeComment}
                 updateComment={updateComment}
                 deleteComment={deleteComment}
                 addComment={addComment}
-                parentId={comment.PostId}
+                parentId={comment.CommentID}
                 replies={[]}
                 currentUserId={currentUserId}
               />

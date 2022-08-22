@@ -19,7 +19,7 @@ const Comments = ({ commentsUrl, currentUserId }) => {
       .filter((backendComment) => backendComment.parentId === commentId)
       .sort(
         (a, b) =>
-          new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
+          new Date(a.PublicationDate).getTime() - new Date(b.PublicationDate).getTime()
       );
   const addComment = (text, parentId) => {
     createCommentApi(text, parentId).then((comment) => {
@@ -28,10 +28,11 @@ const Comments = ({ commentsUrl, currentUserId }) => {
     });
   };
 
-  const updateComment = (text, commentId) => {
+  const updateComment = async(text, commentId) => {
+  
     updateCommentApi(text).then(() => {
       const updatedBackendComments = backendComments.map((backendComment) => {
-        if (backendComment.PostId === commentId) {
+        if (backendComment.CommentID === commentId) {
           return { ...backendComment, Content: text };
         }
         return backendComment;
@@ -44,7 +45,7 @@ const Comments = ({ commentsUrl, currentUserId }) => {
     if (window.confirm("Are you sure you want to remove comment?")) {
       deleteCommentApi().then(() => {
         const updatedBackendComments = backendComments.filter(
-          (backendComment) => backendComment.PostId !==  commentId
+          (backendComment) => backendComment.CommentID !==  commentId
         );
         setBackendComments(updatedBackendComments);
       });
@@ -65,9 +66,9 @@ const Comments = ({ commentsUrl, currentUserId }) => {
       <div className="comments-container">
         {rootComments.map((rootComment) => (
           <Comment
-            key={rootComment.PostId}
+            key={rootComment.CommentID}
             comment={rootComment}
-            replies={getReplies(rootComment.PostId)}
+            replies={getReplies(rootComment.CommentID)}
             activeComment={activeComment}
             setActiveComment={setActiveComment}
             addComment={addComment}

@@ -1,7 +1,7 @@
 export const getComments = async () => {
     return [
       {
-        PostId: "1",
+        CommentID: "1",
         Content: "First comment",
         username: "Jack",
         userId: "1",
@@ -12,14 +12,15 @@ export const getComments = async () => {
     ];
   };
   
-  export const createComment = async (text, parentId = null) => {
+  export const createComment = async (text, parentId = null,PostId) => {
     return {
-      PostId: Math.random().toString(36).substr(2, 9),
+      CommentID: Math.random().toString(36).substr(2, 9),
       Content: text,
       parentId,
       userId: "1",
       username: "John",
       PublicationDate: new Date().toISOString(),
+      PostId,
     };
   };
   

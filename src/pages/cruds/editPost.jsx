@@ -44,11 +44,11 @@ const EditPost = () => {
             setEditTask(post.ProgrammingLanguage.Name)
         }
     }, [post, setEditTitle, setEditBody,setEditTask])
-    const handleEdit=async(id)=>{
+    const handleEdit=async(PostId)=>{
         const datetime = format(new Date(), 'MMMM dd, yyyy pp');
         const updatedPost= { PostId:id, Title: editTitle, PublicationDate: datetime, Content: editBody,LanguageID:editTask,imageURL:editImages };
         try{
-           const response = await api.put(`/posts/${id}`,updatedPost, {
+           const response = await api.put(`/posts/${PostId}`,updatedPost, {
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('access')}`
             }
@@ -106,7 +106,7 @@ const EditPost = () => {
               </datalist>
               <Input type='file'multiple onChange={onImageChange}/>
               {editImageURL.map(imageSrc=><img style={{width:'300px',heigth:'300px'}} src={imageSrc}/>)}
-                     <Link to='/posts'> <button type="submit" onClick={() => handleEdit(post.id)}>Enviar</button></Link> 
+                     <Link to='/posts'> <button type="submit" onClick={() => handleEdit(post.PostID)}>Enviar</button></Link> 
                     </form>
                     </Container>
                 </>

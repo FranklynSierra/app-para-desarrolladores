@@ -20,7 +20,11 @@ const PostPage = () => {
     const handleDelete=async(id)=>{
         try{
     
-        await api.delete(`/posts/${id}`)
+        await api.delete(`/posts/${id}`, {
+            headers: {
+                'Authorization': `bearer ${localStorage.getItem("access")}`
+            }
+        })
         const postList=posts.filter(post=>post.PostID!==id)
         setPosts(postList)
        

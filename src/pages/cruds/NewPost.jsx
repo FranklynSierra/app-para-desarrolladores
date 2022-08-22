@@ -2,7 +2,6 @@ import React,{useState,useContext,useEffect} from 'react';
 import DataContext from '../../context/DataContext';
 import api from '../../api/posts.js'
 import { Box, Container,Input, Textarea } from '@chakra-ui/react';
-import AsyncSelect from 'react-select'
 import { format } from 'date-fns';
 import axios from 'axios';
 const NewPost = () => {
@@ -27,10 +26,14 @@ const NewPost = () => {
         e.preventDefault();
         const id = posts.length ? posts[posts.length - 1].id + 1 : 1;
         const datetime = format(new Date(), 'MMMM dd, yyyy pp');
-        const newPost = { PostId:id, Title: postTitle, PublicationDate:datetime, Content: postBody,LanguageID:task,imageURL };
+        const newPost = { PostId:id, Title: postTitle, PublicationDate:datetime, Content: postBody,LanguageID:Number(task),imageURL };
         try {
           //                  aqui se tiene que colocar la url de la base de datos 
-          const response = await api.post('/posts', newPost);
+          const response = await api.post('/posts', newPost, {
+            headers: {
+              'Authorization': `bearer ${localStorage.getItem("access")}`
+            }
+          });
           const allPosts = [...posts, response.data];
         //  const allPosts=[...posts,newPost]
           setPosts(allPosts);
@@ -47,7 +50,7 @@ const NewPost = () => {
 
     useEffect(() => {
       const apiConsumir=async()=>{
-        const url='https://developer-news-back.herokuapp.com/programming-languages'
+        const url='http://localhost:8000/programming-languages'
         const result=await axios.get(url)
        
         setApis(result.data)

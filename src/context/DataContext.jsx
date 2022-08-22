@@ -12,7 +12,7 @@ export const DataProvider = ({ children }) => {
   
   const [search,setSearch]=useState('')
   const [searchResults, setSearchResults] = useState([]);
-  const {data,fetchError,isLoading}=useAxiosFetch('https://developer-news-back.herokuapp.com/posts')
+  const {data,fetchError,isLoading}=useAxiosFetch('http://localhost:8000/posts')
   const [post, setPost] = useState([]);
   const [loading, setLoading] = useState(false);
 

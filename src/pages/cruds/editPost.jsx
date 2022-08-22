@@ -17,7 +17,7 @@ const EditPost = () => {
     } 
     useEffect(() => {
         const apiConsumir=async()=>{
-          const url='https://developer-news-back.herokuapp.com/programming-languages'
+          const url='http://localhost:8000/programming-languages'
           const result=await api.get(url)
          
           setApis(result.data)
@@ -46,9 +46,13 @@ const EditPost = () => {
     }, [post, setEditTitle, setEditBody,setEditTask])
     const handleEdit=async(id)=>{
         const datetime = format(new Date(), 'MMMM dd, yyyy pp');
-        const updatedPost= { PostId:id, Title: editTitle, PublicationDate: datetime, Content: editBody,LanguageID:editTask,imageURL:editImages };
+        const updatedPost= { PostId:id, Title: editTitle, PublicationDate: datetime, Content: editBody,LanguageID:Number(editTask),imageURL:editImages };
         try{
-           const response = await api.put(`/posts/${id}`,updatedPost)
+           const response = await api.put(`/posts/${id}`,updatedPost, {
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('access')}`
+            }
+           })
           //                               aqui deberia estar response.data
           setPosts(posts.map(post=>post.PostID===id?{...response.data}:post))
           setEditTitle('');
@@ -96,7 +100,7 @@ const EditPost = () => {
                    {apis.length===0&&<p>cargando</p>}
                  {apis.map((api,i)=>{
 
-                  return(<option key={i}>{api.Name}</option>)
+                  return(<option key={i}>{api.LanguageID}</option>)
                  })}
                 
               </datalist>

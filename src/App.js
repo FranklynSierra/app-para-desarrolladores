@@ -54,13 +54,12 @@ function App() {
  <Route path='/feed-post' element={<FeedPostPage />} />
  <Route path='/feed-post/:url' element={<Post />} />
  <Route path='/category/:tag' element={<MorePostsPage />} />
-  {/* <Route element={<PersistLogin/>}>
-  <Route element={<RequireAuth />}> */}
+    <Route element={<PersistLogin/>}>
+    <Route element={<RequireAuth />}>
     <Route path='/post'element={<NewPost/>}></Route>
     <Route path='/edit/:id'element={<EditPost />}></Route> 
-   
-   {/* </Route>
-  </Route>  */}
+   </Route>
+  </Route>  
 
   </Routes>
 </DataProvider>

@@ -39,8 +39,8 @@ const Login = () => {
             console.log(JSON.stringify(response?.data));
             //console.log(JSON.stringify(response));
             const accessToken = response?.data?.accessToken;
-            const roles = response?.data?.roles;
-            setAuth({  username,  password, roles, accessToken });
+            setAuth({  username,  password, accessToken });
+            localStorage.setItem("access", accessToken);
             setUser('');
             setPwd('');
             navigate(from,{replace:true})

@@ -68,7 +68,7 @@ export const Header = ( {usser = true}) => {
                   </MenuGroup>
                   <MenuDivider />
                   <MenuGroup title='Sesion'>
-                    <MenuItem >Log Out</MenuItem>
+                    <MenuItem onClick={signOut} >Log Out</MenuItem>
                   </MenuGroup>
                 </MenuList>
               </Menu>

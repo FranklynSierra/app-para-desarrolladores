@@ -19,8 +19,8 @@ import { Flex,
          HStack } from '@chakra-ui/react';
 import { SearchIcon } from '@chakra-ui/icons';
 import { Link as Enlace } from "react-router-dom";
-
-
+import programacionEnEspañol from '../../../img/logo-programacion-en-español.png'
+import user from '../../../img/imagenUsuario.png'
 export const Header = ( {usser = true}) => {
   const navigate=useNavigate();
   const logout=useLogout();
@@ -34,16 +34,16 @@ export const Header = ( {usser = true}) => {
         <Flex className='menu-nav' h='60px' align='center'>
           <Box>
             <Enlace to='/'>
-            <Image src='https://bit.ly/dan-abramov' 
+            <Image src={programacionEnEspañol}
                    alt='Dan Abramov' w='150px' h='40px' 
                    objectFit='cover' ml='30px' />
             </Enlace>
           </Box>
           <Spacer />
 
-          <Box className='item' display='flex' w='30%' justifyContent='space-around'>
+          <Box className='item' display='flex' w='100%' justifyContent='space-around'>
 
-            <Link to='/posts'  cursor='pointer'>Posts</Link>
+            <Link to='/posts'  cursor='pointer'>Publicaciones</Link>
              <Link to='/post'  cursor='pointer'>crear publicacion</Link>
             <Link to='/feed-post'>Tecnologias</Link>
 
@@ -55,20 +55,20 @@ export const Header = ( {usser = true}) => {
             (
               <Menu >
                 <MenuButton mr='20px'>
-                  <Avatar name='Dan Abrahmov' src='https://bit.ly/dan-abramov' />
+                  <Avatar name='Dan Abrahmov' src={user} />
                 </MenuButton>
                 <MenuList>
                   <MenuGroup title='Profile'>
                     <MenuItem>
-                      <Enlace to='my-account'>My Account</Enlace>
+                      <Enlace to='my-account'>Mi cuenta</Enlace>
                     </MenuItem>
                     <MenuItem>
-                      <Enlace to='/new-post'>New post</Enlace>
+                      <Enlace to='/new-post'>Nueva Publicacion</Enlace>
                     </MenuItem>
                   </MenuGroup>
                   <MenuDivider />
                   <MenuGroup title='Sesion'>
-                    <MenuItem onClick={signOut} >Log Out</MenuItem>
+                    <MenuItem onClick={signOut} >Salir sesion</MenuItem>
                   </MenuGroup>
                 </MenuList>
               </Menu>
@@ -76,9 +76,9 @@ export const Header = ( {usser = true}) => {
              :
              (
               <HStack mr='20px' w='120px'>
-                <Link to='/register' cursor='pointer' >Log In </Link>
+                <Link to='/register' cursor='pointer' >Registrarse </Link>
                 <Text>/</Text>
-                <Link to='/login' cursor='pointer'> Sign In</Link>
+                <Link to='/login' cursor='pointer'> Iniciar sesion</Link>
               </HStack>
              )
              

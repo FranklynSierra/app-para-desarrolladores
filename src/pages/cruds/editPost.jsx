@@ -17,7 +17,7 @@ const EditPost = () => {
     } 
     useEffect(() => {
         const apiConsumir=async()=>{
-          const url='http://localhost:8000/programming-languages'
+          const url='https://developer-news-back.herokuapp.com/programming-languages'
           const result=await api.get(url)
          
           setApis(result.data)

@@ -38,38 +38,11 @@ body {
 
 }
 
-.Footer {
-  scrollbar-color: rgba(0, 0, 0, .5) rgba(0, 0, 0, 0);
-  scrollbar-width: thin;
-  color: #000;
-  width: 100%;
-  background-color: #cacaca;
-  padding: 1rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.Header h1 {
-  font-size: 1.5rem;
-}
-
-.Header svg {
-  font-size: 2rem;
-}
 .task{
   font-size:15px;
   margin-top:10px ;
   width: 100%;
   height: 50px;
-}
-h5{
-  color:rgb(51, 47, 47);
-}
-.Footer {
-  padding: 0.75rem;
-  display: grid;
-  place-content: center;
 }
 
 .Nav {

@@ -2,6 +2,7 @@
 import { useParams,Link } from 'react-router-dom';
 import Comments from '../../components/comentarios crud/comments';
 import React,{useContext} from 'react';
+import { useLocation} from 'react-router-dom'
 import DataContext from '../../context/DataContext';
 import api from '../../api/posts.js'
 import { Box, 
@@ -13,11 +14,13 @@ import { Box,
     Button,
    } from '@chakra-ui/react';
 const PostPage = () => {
-  
+
     const { posts,setPosts}=useContext(DataContext)
     const { id } = useParams();
+    const location=useLocation()
     const post = posts.find(post => (post.PostID).toString() === id);
     const handleDelete=async(id)=>{
+      
         try{
     
         await api.delete(`/posts/${id}`, {
@@ -25,8 +28,10 @@ const PostPage = () => {
                 'Authorization': `bearer ${localStorage.getItem("access")}`
             }
         })
+          
         const postList=posts.filter(post=>post.PostID!==id)
         setPosts(postList)
+        location('/posts')
        
         }catch(err){
           console.log(`error: ${err}`)
@@ -73,17 +78,22 @@ const PostPage = () => {
                 }
                 {!post &&
                     <>
-                    <Container>
-                        <h2>Publicacion no encontrado</h2>
-                        <p>hubo un fallo.</p>
-                        <p>
-                            <Link to='/'>Visita nuestra pagina principal</Link>
-                        </p>
+                    <Container   display='inline' 
+                        
+                        lineHeight='70px'
+                       
+                        fontSize='45px' W='100%'>
+                        <h1>Publicacion no encontrado</h1>
+                        <h1>hubo un fallo.</h1>
+                                                
+                        <p style={{color:'red'}}>
+                         <Link color='' to='/'>Visita nuestra pagina principal</Link>
+                       </p>
                         </Container>
                     </>
                 }
             </article>
-            <Comments key={posts.PostID} currentUserId='1'/>
+            {/* <Comments key={posts.PostID} currentUserId='1'/> */}
         </Container>
         </>
     )

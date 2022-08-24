@@ -11,7 +11,7 @@ import { PostContextProvider } from './context/PostContext';
 import { ChakraProvider } from '@chakra-ui/react'
 import { Header } from './pages/home/sections/Header';
 // import NewPost from './pages/newPost/NewPost';
-import HomePrincipal from './pages/homePrincipal';
+
 import RequireAuth from './pages/requireAuth';
 import MorePostsPage from './pages/MorePost';
 import PageNotFound from './pages/pageNotFound';
@@ -54,12 +54,12 @@ function App() {
  <Route path='/feed-post' element={<FeedPostPage />} />
  <Route path='/feed-post/:url' element={<Post />} />
  <Route path='/category/:tag' element={<MorePostsPage />} />
-    <Route element={<PersistLogin/>}>
-    <Route element={<RequireAuth />}>
-    <Route path='/post'element={<NewPost/>}></Route>
-    <Route path='/edit/:id'element={<EditPost />}></Route> 
-   </Route>
-  </Route>  
+ <Route element={<PersistLogin/>}>
+ <Route element={<RequireAuth />}>
+      <Route path='/post'element={<NewPost/>}></Route>
+      <Route path='/edit/:id'element={<EditPost />}></Route> 
+ </Route>
+ </Route>  
 
   </Routes>
 </DataProvider>

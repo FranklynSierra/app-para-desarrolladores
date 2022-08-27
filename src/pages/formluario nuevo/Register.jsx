@@ -1,4 +1,5 @@
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect} from "react";
+import { useNavigate } from "react-router-dom";
 import '../../styles/form/form.scss'
 import axios from "../../api/axios";
 import { Link } from "react-router-dom";
@@ -6,24 +7,28 @@ const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!*@#$%]).{8,24}$/;
 const REGISTER_URL = '/auth/register';
 
+const API_URL = 'https://developer-news-back.herokuapp.com/auth/register';
+
 const Register = () => {
     const userRef = useRef();
     const errRef = useRef();
 
-    const [username, setUser] = useState('');
+    const [username, setUsername] = useState('');
     const [validName, setValidName] = useState(false);
     const [userFocus, setUserFocus] = useState(false);
  
-    const [password, setPwd] = useState('');
+    const [password, setPassword] = useState('');
     const [validPwd, setValidPwd] = useState(false);
     const [pwdFocus, setPwdFocus] = useState(false);
 
-    const [matchPwd, setMatchPwd] = useState('');
+    const [matchPwd, setMatchPassword] = useState('');
     const [validMatch, setValidMatch] = useState(false);
     const [matchFocus, setMatchFocus] = useState(false);
 
     const [errMsg, setErrMsg] = useState('');
     const [success, setSuccess] = useState(false);
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         userRef.current.focus();
@@ -65,9 +70,9 @@ const Register = () => {
             setSuccess(true);
             //clear state and controlled inputs
             //need value attrib on inputs for this
-            setUser('');
-            setPwd('');
-            setMatchPwd('');
+            // setUser('');
+            // setPwd('');
+            // setMatchPwd('');
         } catch (err) {
             if (!err?.response) {
                 setErrMsg('No Server Response');
@@ -77,6 +82,44 @@ const Register = () => {
                 setErrMsg('Registration Failed')
             }
             errRef.current.focus();
+        }
+    }
+
+    const handleSubmitRegister = async (e) => {
+        e.preventDefault();
+        if(!username){
+            alert('no escrbiste en el username');
+            return;
+        }
+        if(password != matchPwd){
+            alert('las contraseñas no coincciden');
+            return;
+        }
+        try {
+            console.log({
+                'user': username,
+                'clave': password,
+                
+            });
+
+            const responseUsser = await fetch(API_URL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ username, password }), 
+            });
+            console.log(responseUsser)
+            setUsername('');
+            setPassword('');
+            setMatchPassword('');
+            if(responseUsser.status === 201){
+                alert('Usuario creado exitosamente')
+            }
+            navigate('/login')
+
+        } catch (error) {
+            console.log(error)
         }
     }
 
@@ -93,7 +136,7 @@ const Register = () => {
                 <section className="form-register" >
                     <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
                     <h1>Formulario de registro</h1>
-                    <form onSubmit={handleSubmit}>
+                    <form onSubmit={handleSubmitRegister}>
                         <label htmlFor="username">
                             Nombre del usuario:
                           
@@ -103,7 +146,7 @@ const Register = () => {
                             id="username"
                             ref={userRef}
                             autoComplete="off"
-                            onChange={(e) => setUser(e.target.value)}
+                            onChange={(e) => setUsername(e.target.value)}
                             value={username}
                             required
                             aria-invalid={validName ? "false" : "true"}
@@ -121,7 +164,7 @@ const Register = () => {
                         className="controls"
                             type="password"
                             id="password"
-                            onChange={(e) => setPwd(e.target.value)}
+                            onChange={(e) => setPassword(e.target.value)}
                             value={password}
                             required
                             aria-invalid={validPwd ? "false" : "true"}
@@ -139,7 +182,7 @@ const Register = () => {
                         className="controls"
                             type="password"
                             id="confirm_pwd"
-                            onChange={(e) => setMatchPwd(e.target.value)}
+                            onChange={(e) => setMatchPassword(e.target.value)}
                             value={matchPwd}
                             required
                             aria-invalid={validMatch ? "false" : "true"}
@@ -149,7 +192,7 @@ const Register = () => {
                         />
                      
 
-                        <button  >Registrarse</button>
+                        <button>Registrarse</button>
                     </form>
                     <p>
                        ¿Tienes una cuenta?<br />

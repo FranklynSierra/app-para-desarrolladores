@@ -8,7 +8,7 @@ const PostNotImage = ({children, nameCategory, postsCategory}) => {
   const navigate = useNavigate();
 
   const handleGoToCategory = () => {
-    navigate(`/category/${id}`, { state: { postsCategory } })
+    navigate(`/category/${nameCategory}`, { state: { nameCategory, postsCategory } })
   }
   return (
     <Box height='440px'>

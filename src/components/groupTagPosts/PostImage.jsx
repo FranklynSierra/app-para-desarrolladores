@@ -2,16 +2,14 @@ import React from 'react';
 import {  Box, Image } from '@chakra-ui/react';
 import InformationCard from './InformationCard';
 import { Link as Enlace, useNavigate } from 'react-router-dom';
-import { imgExist } from '../../utils/imgExist';
-import { id } from '../../utils/urlPost';
+import { imgExist2 } from '../../utils/imgExist';
 
 const PostImage = ({post}) => {
-  console.log('aqui', post)
   // const post = postList[0];
   const navigate = useNavigate();
 
   const handleGoToPost = () => {
-    navigate(`/post:${id}`, { state: { post } })
+    navigate(`/feed-post/${post.PostID}`, { state: { post } })
   }
   return (
 
@@ -20,8 +18,8 @@ const PostImage = ({post}) => {
     >
       <Box>
         
-        <Image src={imgExist(post)} 
-        alt={post.headline.main}
+        <Image src={imgExist2(post)} 
+        alt={post.Title}
         w='100%'
         h='240px'
         mb='22px'
@@ -29,7 +27,7 @@ const PostImage = ({post}) => {
         cursor='pointer'
         onClick={handleGoToPost} />
 
-        <InformationCard title={post.headline.main} post={post} fecha={post.pub_date} />
+        <InformationCard title={post.Title} post={post} fecha={post.PublicationDate} />
       </Box>
     </Box>
   )

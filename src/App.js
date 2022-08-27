@@ -29,46 +29,48 @@ import EditPost from './pages/cruds/editPost';
 import PersistLogin from './components/PersistLogin';
 
 import { DataProvider } from './context/DataContext';
+import { AuthProvider } from './context/AuthContext';
 
 function App() {
   return (
-    <div className='App'>
+    // <div className='App'>
   <ChakraProvider>
- <BrowserRouter>
+    <BrowserRouter>
+      <DataProvider>
+        <AuthProvider>
+        <Header />
 
- <DataProvider>
+        <Routes>
 
- <Header></Header>
- <Routes>
+          {/* <Route path='/' element={ <HomePrincipal />}></Route> */}
+          <Route path='/' element={<Home />} />
+          <Route path='/login'element={ <Login/>}></Route>
+          <Route path='/register'element={ <Register/>}></Route>
+          {/* <Route path='/posts'element={<Crud />}></Route> */}
+          {/* <Route path='/post/:id'element={<PostPage />} /> */}
+          <Route path='/my-account' element={<Profile />} />
+          <Route path='/new-post' element={<NewPost />} />
+          
+          <Route path='/feed-post' element={<FeedPostPage />} />
+          <Route path='/feed-post/:id' element={<Post />} />
+          <Route path='/category/:lenguaje' element={<MorePostsPage />} />
+          <Route element={<PersistLogin/>}>
+          <Route element={<RequireAuth />}>
+                <Route path='/post'element={<NewPost/>} />
+                <Route path='/edit/:id'element={<EditPost />} />
+          </Route>
+          </Route>  
+          <Route path='*'element={<PageNotFound/>} />
 
-  {/* <Route path='/' element={ <HomePrincipal />}></Route> */}
-   <Route path='/Login'element={ <Login/>}></Route>
-  <Route path='/register'element={ <Register/>}></Route>
-  <Route path='/posts'element={<Crud />}></Route>
-  <Route path='*'element={<PageNotFound/>}></Route>
-  <Route path='/post/:id'element={<PostPage />}></Route> 
-  <Route path='/' element={<Home />} />
-  <Route path='/my-account' element={<Profile />} />
-  <Route path='/new-post' element={<NewPost />} />
-   
- <Route path='/feed-post' element={<FeedPostPage />} />
- <Route path='/feed-post/:url' element={<Post />} />
- <Route path='/category/:tag' element={<MorePostsPage />} />
- <Route element={<PersistLogin/>}>
- <Route element={<RequireAuth />}>
-      <Route path='/post'element={<NewPost/>}></Route>
-      <Route path='/edit/:id'element={<EditPost />}></Route> 
- </Route>
- </Route>  
-
-  </Routes>
-</DataProvider>
-  </BrowserRouter>
+        </Routes>
+        </AuthProvider>
+      </DataProvider>
+    </BrowserRouter>
   </ChakraProvider>
  
-</div>
-  )
+// </div>
+  );
+}
 
-  }
 export default App;
 

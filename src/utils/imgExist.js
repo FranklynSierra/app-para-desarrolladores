@@ -7,3 +7,14 @@ export const imgExist = (article) => {
     return urlImage
   }
 }
+
+
+export const imgExist2 = (article) => {
+  const existImg = article?.ImageUrl;
+  if(existImg == "" || existImg == undefined){
+    console.log('no hay imagen')
+    return 'https://farm5.staticflickr.com/4363/36346283311_74018f6e7d_o.png'
+  } else {
+    return article?.ImageUrl
+  }
+}

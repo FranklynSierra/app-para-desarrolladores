@@ -7,15 +7,15 @@ import {
   Link } from '@chakra-ui/react';
 import { ArrowForwardIcon } from '@chakra-ui/icons'
 import { useNavigate } from 'react-router-dom';
-import {id } from '../../utils/urlPost';
 import { makeDate } from '../../utils/datePost';
 
 
 const InformationCard = ({title, post, fecha, shadow}) => {
+
   const navigate = useNavigate();
 
   const handleGoToPost = () => {
-    navigate(`/post:${id}}`, { state: { post } })
+    navigate(`/feed-post/${post.PostID}`, { state: { post } })
   }
   return (
     <Box bg='white' 

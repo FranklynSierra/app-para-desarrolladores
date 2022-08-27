@@ -1,8 +1,14 @@
-import { useRef, useState, useEffect } from 'react';
+import { useRef, useState, useEffect, useContext } from 'react';
+import {useNavigate, useLocation, Link} from 'react-router-dom';
+
 import useAuth from '../../hooks/useAuth';
 import axios from '../../api/axios';
-import {useNavigate ,useLocation,Link} from 'react-router-dom'
+
+import { AuthContext } from '../../context/AuthContext';
+
+
 const LOGIN_URL = '/auth/login';
+
 
 const Login = () => {
     const { setAuth,persist,setPersist } = useAuth()
@@ -16,6 +22,8 @@ const Login = () => {
     const [password, setPwd] = useState('');
     const [errMsg, setErrMsg] = useState('');
     // const [success, setSuccess] = useState(false);
+
+    const { loginUser } = useContext(AuthContext);
 
     useEffect(() => {
         userRef.current.focus();
@@ -57,6 +65,21 @@ const Login = () => {
             errRef.current.focus();
         }
     }
+
+    const handleSubmitLogin = async (e) => {
+        e.preventDefault();
+
+        const responseUser = await loginUser({ username, password });
+
+        if(responseUser != 401){
+            console.log('usuario logueado correctamente')
+            navigate('/');
+        } else {
+            alert('verifica los datos ya que están incorrectos')
+        }
+        
+    }
+
     const togglePersist = () => {
         setPersist(prev => !prev);
     }
@@ -69,7 +92,7 @@ const Login = () => {
                 <section className="form-register">
                     <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
                     <h1>Iniciar Sesion</h1>
-                    <form onSubmit={handleSubmit}>
+                    <form onSubmit={handleSubmitLogin}>
                         <label htmlFor="username">Nombre de usuario:</label>
                         <input 
                         className="controls"

@@ -13,6 +13,8 @@ export const AuthProvider = ({ children }) => {
         try {
             const responseUser = await fetch(`${API_URL}/login`, {
                 method: 'POST',
+                // Se debe desplegar primero la aplicacion para poder dar credentials                
+                // credentials: 'include',
                 headers: {
                     'Content-Type': 'application/json'
                 },
@@ -37,6 +39,9 @@ export const AuthProvider = ({ children }) => {
         try {
             const response = await fetch(`${API_URL}/logout`, {
                 method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
             });
             if(response.status === 200){
                 const res = await response.json();

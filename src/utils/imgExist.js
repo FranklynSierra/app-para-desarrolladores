@@ -10,6 +10,7 @@ export const imgExist = (article) => {
 
 
 export const imgExist2 = (article) => {
+  // console.log(article)
   const existImg = article?.ImageUrl;
   if(existImg == "" || existImg == undefined){
     console.log('no hay imagen')
@@ -17,4 +18,4 @@ export const imgExist2 = (article) => {
   } else {
     return article?.ImageUrl
   }
-}
+};

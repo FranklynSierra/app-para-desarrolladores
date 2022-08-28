@@ -11,3 +11,14 @@ export const getPostsByTag = async (tag) => {
   // console.log(data)
   return data;
 };
+
+export const getPostById = async (id) => {
+  const response = await fetch(`${API_URL}/posts/${id}`);
+  // console.log(response)
+  if(response.status === 200) {
+    const data     = await response.json();
+    return {post: data, err: null};
+  } else {
+    return { post: null, err: `Error: ${response.statusText}` }
+  }
+};

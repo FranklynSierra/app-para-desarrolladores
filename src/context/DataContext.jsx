@@ -1,8 +1,10 @@
 import { createContext, useState, useEffect } from 'react';
-import { getPostsByTag } from '../utils/fetchData';
-
+import { getPostById, getPostsByTag } from '../utils/fetchData';
 
 import useAxiosFetch from '../hooks/useAxiosFetch';
+
+const API_URL = 'https://developer-news-back.herokuapp.com';
+
 export const DataContext = createContext({});
 
 export const DataProvider = ({ children }) => {
@@ -15,21 +17,9 @@ export const DataProvider = ({ children }) => {
   const {data,fetchError,isLoading}=useAxiosFetch('https://developer-news-back.herokuapp.com/posts')
 
   //Posts para la nueva version
-  const [postDB, setPostDB] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [ postDB, setPostDB ] = useState([]);
+  const [ loading, setLoading ] = useState(false);
   const [ createPost, setCreatePost ] = useState(false);
-
-
-  // useEffect(() => {
-  //   const getData = async (keyword) => {
-  //     const dbPosts = await getPostsByTag(keyword)
-  //     const { docs: thePosts } = await dbPosts.response;
-  //     setPost(thePosts)
-  //     setLoading(true);
-
-  //   }
-  //   getData('sports')
-  // }, []);
 
   
   useEffect(() => {
@@ -37,7 +27,7 @@ export const DataProvider = ({ children }) => {
     //la funcion de obtener los post por lenguaje para devolver un array ordenado
     //por cada lenguaje de programacion
     const getDataDB = async () => {
-      const getNamesLenguages  = await fetch('https://developer-news-back.herokuapp.com/programming-languages/');
+      const getNamesLenguages  = await fetch(`${API_URL}/programming-languages/`);
       const namesLenguagesJson = await getNamesLenguages.json();
       const namesLenguages     = namesLenguagesJson.map(lenguage => lenguage.Name)
       // console.log(namesLenguages);
@@ -65,17 +55,51 @@ export const DataProvider = ({ children }) => {
   
 
 
-useEffect(() => {
-  setPosts(data)
-},[data]);
+  useEffect(() => {
+    setPosts(data)
+  },[data]);
 
-useEffect(()=>{
-    const filteredResults=posts.filter(post=>
-      ((post.Content).toLowerCase()).includes(search.toLowerCase())
-      || ((post.Title).toLowerCase()).includes(search.toLowerCase())
-      );
-      setSearchResults(filteredResults.reverse())
-  },[posts,search])
+  useEffect(()=>{
+      const filteredResults=posts.filter(post=>
+        ((post.Content).toLowerCase()).includes(search.toLowerCase())
+        || ((post.Title).toLowerCase()).includes(search.toLowerCase())
+        );
+        setSearchResults(filteredResults.reverse())
+    },[posts,search])
+
+  const fetchEditPost = async (post, id, token) => {
+    console.log(token)
+    try {
+      const response = await fetch(`${API_URL}/posts/${id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'Authorization': `Bearer ${token}`,
+        },
+        body: JSON.stringify(post)
+      });
+      if(response.status === 200){
+        setCreatePost(true);
+        return response.status;
+      } else {
+        new Error('no se puedo editar el post,' + response.statusText)
+        return response.statusText
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  };
+
+  const fetchGetPostById = async (id) => {
+    // setLoading(true);
+    try {
+      const response = await getPostById(id);
+      return response;
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
 
   return (
@@ -88,7 +112,9 @@ useEffect(()=>{
             loading, 
             postDB,
             setPosts,
-            setCreatePost
+            setCreatePost,
+            fetchEditPost,
+            fetchGetPostById
             }}>
 
             {children}

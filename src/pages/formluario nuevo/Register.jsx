@@ -64,9 +64,7 @@ const Register = () => {
                     withCredentials: true
                 }
             );
-            console.log(response?.data);
-            console.log(response?.accessToken);
-            console.log(JSON.stringify(response))
+            
             setSuccess(true);
             //clear state and controlled inputs
             //need value attrib on inputs for this
@@ -109,7 +107,7 @@ const Register = () => {
                 },
                 body: JSON.stringify({ username, password }), 
             });
-            console.log(responseUsser)
+           
             setUsername('');
             setPassword('');
             setMatchPassword('');
@@ -119,7 +117,7 @@ const Register = () => {
             navigate('/login')
 
         } catch (error) {
-            console.log(error)
+          alert(error)
         }
     }
 

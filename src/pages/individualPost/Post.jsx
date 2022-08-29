@@ -52,7 +52,7 @@ const Post = () => {
         setLoading(false);
       } else {
         const { err, post } = await fetchGetPostById(id);
-        // console.log(post  )
+     
         if(err){
           setError(true);
           setLoading(false);
@@ -73,14 +73,14 @@ const Post = () => {
 
 
   const editPost = () => {
-    console.log('editando un post');
+    
     navigate('/new-post', { state: { post, user } })
   }
 
   const deletePost = async (id) => {
-    console.log('elimiando post');
+   
     const respuesta = await fetchDeletePostById(id, user.accessToken);
-    // console.log(respuesta)
+  
     if(!respuesta.err){
       alert('El post fue eliminado');
       onClose();
@@ -89,8 +89,8 @@ const Post = () => {
     } else{
       alert('error ' + respuesta.err.msg);
       const changeToken = await fetchRefreshToken(backupUser);
-      console.log(changeToken)
-      // onClose();
+   
+   
     }
   };
 

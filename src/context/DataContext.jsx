@@ -24,14 +24,12 @@ export const DataProvider = ({ children }) => {
 
   
   useEffect(() => {
-    //Funcion que obtiene todos los lenguajes de programacion y va llamando
-    //la funcion de obtener los post por lenguaje para devolver un array ordenado
-    //por cada lenguaje de programacion
+    
     const getDataDB = async () => {
       const getNamesLenguages  = await fetch(`${API_URL}/programming-languages/`);
       const namesLenguagesJson = await getNamesLenguages.json();
       const namesLenguages     = namesLenguagesJson.map(lenguage => lenguage.Name)
-      // console.log(namesLenguages);
+    
 
       let newPostDB = [];
       namesLenguages.forEach(name => {
@@ -42,7 +40,7 @@ export const DataProvider = ({ children }) => {
             posts_arr: posts
           };
           newPostDB.push(lenguage)
-          // console.log(lenguage)
+       
         })();
       });
       setPostDB(newPostDB)
@@ -80,7 +78,7 @@ export const DataProvider = ({ children }) => {
     },[posts,search])
 
   const fetchEditPost = async (post, id, token) => {
-    console.log(token)
+   
     try {
       const response = await fetch(`${API_URL}/posts/${id}`, {
         method: 'PUT',

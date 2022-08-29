@@ -34,7 +34,7 @@ export const Header = () => {
 
   const signOutUser = async () => {
     const response = await logoutUser();
-    console.log(response)
+    
     navigate('/')
   };
 

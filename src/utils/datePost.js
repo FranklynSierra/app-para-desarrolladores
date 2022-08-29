@@ -6,4 +6,3 @@ export const makeDate = (date) => {
   return newDate
 }
 
-// makeDate('2009-07-31T05:40:46+0000')

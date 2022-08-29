@@ -26,7 +26,7 @@ const FeedPost = () => {
               <PostNotImage nameCategory={name} postsCategory={posts_arr}>
                 {
                   posts_arr.map((article, ind) => {
-                    // console.log(ind)
+                 
                     if(ind > 0 && ind < 4){
                       return (
                         <InformationCard

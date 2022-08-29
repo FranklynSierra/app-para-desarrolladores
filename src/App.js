@@ -10,7 +10,6 @@ import { PostContextProvider } from './context/PostContext';
 
 import { ChakraProvider } from '@chakra-ui/react'
 import { Header } from './pages/home/sections/Header';
-// import NewPost from './pages/newPost/NewPost';
 
 import RequireAuth from './pages/requireAuth';
 import MorePostsPage from './pages/MorePost';
@@ -18,7 +17,7 @@ import PageNotFound from './pages/pageNotFound';
 
 import Crud from './pages/cruds/crud';
 import NewPost from './pages/cruds/NewPost';
-// import  NewPost  from './pages/newPost/NewPost';
+
 import {BrowserRouter,Route,Routes}from 'react-router-dom'
 import PostPage from './pages/cruds/PostPage';
 
@@ -34,7 +33,7 @@ import { AuthProvider } from './context/AuthContext';
 
 function App() {
   return (
-    // <div className='App'>
+
   <ChakraProvider>
     <BrowserRouter>
       <DataProvider>
@@ -47,8 +46,7 @@ function App() {
           <Route path='/' element={<Home />} />
           <Route path='/login'element={ <Login/>}></Route>
           <Route path='/register'element={ <Register/>}></Route>
-          {/* <Route path='/posts'element={<Crud />}></Route> */}
-          {/* <Route path='/post/:id'element={<PostPage />} /> */}
+         
           <Route path='/my-account' element={<Profile />} />
           <Route path='/new-post' element={<NewPost />} />
           
@@ -69,7 +67,7 @@ function App() {
     </BrowserRouter>
   </ChakraProvider>
  
-// </div>
+
   );
 }
 

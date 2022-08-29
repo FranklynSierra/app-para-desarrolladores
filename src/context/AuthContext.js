@@ -29,7 +29,7 @@ export const AuthProvider = ({ children }) => {
             if(responseUser.status != 401){
                 backupUser = { username, password };
                 const userLoged = await responseUser.json();
-                console.log(userLoged)
+             
                 setUser(userLoged)
                 localStorage.setItem('persist', JSON.stringify(userLoged))
                 return userLoged
@@ -37,7 +37,7 @@ export const AuthProvider = ({ children }) => {
                 return responseUser.status;
             }            
         } catch (error) {
-            console.log(error)
+            alert(error)
         }
     };
 
@@ -53,13 +53,13 @@ export const AuthProvider = ({ children }) => {
                 const res = await response.json();
                 return res;
             } else {
-                console.log(response)
+               
                 localStorage.removeItem('persist');
                 setUser(false)
                 return response.statusText
             }
         } catch (error) {
-            console.log(error)
+           alert(error)
         }
     }
 

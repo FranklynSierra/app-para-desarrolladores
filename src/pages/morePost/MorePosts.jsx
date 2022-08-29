@@ -6,7 +6,7 @@ import PostImage from '../../components/groupTagPosts/PostImage';
 export const MorePosts = ({children}) => {
   const location = useLocation();
   const { postsCategory, nameCategory } = location.state;
-  // console.log(postsCategory)
+
   return (
     <Box py='20px' bg='tomato'>
       <Center>

@@ -45,7 +45,7 @@ export const Header = ( {usser = true}) => {
 
             <Link to='/posts'  cursor='pointer'>Publicaciones</Link>
              <Link to='/post'  cursor='pointer'>crear publicacion</Link>
-            <Link to='/feed-post'>Tecnologias</Link>
+            <Link to='/'>Página principal</Link>
 
           </Box>
           <Spacer />

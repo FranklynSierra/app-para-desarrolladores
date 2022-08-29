@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Heading, Text, VStack } from '@chakra-ui/react'
+import { Box, Heading, VStack } from '@chakra-ui/react'
 
 export const TopContributors = ({children}) => {
   return (

@@ -1,13 +1,10 @@
 import React, { useContext } from 'react';
 import { Link,useNavigate } from 'react-router-dom';
 import useLogout from '../../../hooks/useLogout';
-import '../../../styles/nav/nav.scss' 
 import { Flex, 
          Box, 
          Image,
-         IconButton,
          Spacer,
-        //  Link,
          Menu,
          MenuButton,
          MenuList,
@@ -17,10 +14,8 @@ import { Flex,
          MenuDivider,
          Text,
          HStack } from '@chakra-ui/react';
-import { SearchIcon } from '@chakra-ui/icons';
 import { Link as Enlace } from "react-router-dom";
 import programacionEnEspañol from '../../../img/logo-programacion-en-español.png'
-// import user from '../../../img/imagenUsuario.png'
 import AuthContext from '../../../context/AuthContext';
 
 
@@ -45,8 +40,8 @@ export const Header = () => {
 
     return (
     <header>
-      <nav className='nav'>
-        <Flex className='menu-nav' h='60px' align='center'>
+      <nav>
+        <Flex className='menu-nav' h='60px' align='center' position='sticky' top='0'>
           <Box>
             <Enlace to='/'>
             <Image src={programacionEnEspañol}
@@ -57,11 +52,7 @@ export const Header = () => {
           <Spacer />
 
           <Box className='item' display='flex' w='100%' justifyContent='space-around'>
-
-            {/* <Link to='/posts'  cursor='pointer'>Publicaciones</Link> */}
-             {/* <Link to='/post'  cursor='pointer'>crear publicacion</Link> */}
-            <Link to='/feed-post'>Tecnologias</Link>
-
+            <Link to='/feed-post'>Tecnologias rr</Link>
           </Box>
           <Spacer />
 

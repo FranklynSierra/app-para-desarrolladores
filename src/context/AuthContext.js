@@ -1,4 +1,6 @@
 import { createContext, useState } from "react";
+// import { refreshToken } from '../utils/refreshToken';
+import { refreshToken } from "../utils/refreshToken";
 
 const API_URL = 'https://developer-news-back.herokuapp.com/auth';
 
@@ -9,19 +11,23 @@ export const AuthProvider = ({ children }) => {
     const [ auth, setAuth ] = useState({});
     const [ persist, setPersist ] = useState(JSON.parse(localStorage.getItem('persist')) || false);
 
+    let backupUser;
+
     const loginUser = async ({username, password}) => {
         try {
             const responseUser = await fetch(`${API_URL}/login`, {
                 method: 'POST',
                 // Se debe desplegar primero la aplicacion para poder dar credentials                
-                // credentials: 'include',
+                credentials: 'include',
+                // withCredentials: true,
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({ username, password }),
             });
 
             if(responseUser.status != 401){
+                backupUser = { username, password };
                 const userLoged = await responseUser.json();
                 console.log(userLoged)
                 setUser(userLoged)
@@ -56,8 +62,20 @@ export const AuthProvider = ({ children }) => {
             console.log(error)
         }
     }
+
+    const fetchRefreshToken = async (user) => {
+        const responseUser = refreshToken(user);
+        if(responseUser.status != 401){
+          const userLoged = await responseUser.json();
+          setUser(userLoged);
+          localStorage.setItem('persist', JSON.stringify(userLoged))
+          return userLoged.accesToken;
+      } else {
+          return responseUser.status;
+      }  
+    }
     return (
-        <AuthContext.Provider value={{ auth, setAuth,persist,setPersist, loginUser, user, logoutUser }}>
+        <AuthContext.Provider value={{ auth, setAuth,persist,setPersist, loginUser, user, logoutUser, backupUser, fetchRefreshToken }}>
             {children}
         </AuthContext.Provider>
     )

@@ -13,14 +13,14 @@ export const MainHome = () => {
         <Center w='35%'>
           <Box>
             <Heading size='2xl' color='blue.800'>Bienvenido a Programacion en Español</Heading>
-            <Text my='20px'>Suscríbete al Newsletter más leído por programadores</Text>
-            <InputGroup my='10px'>
+            <Text my='20px'>El blog de tecnología más importante de habla hispana</Text>
+            {/* <InputGroup my='10px'>
               <Input variant='filled' type='email' bg='white.50' placeholder='email@email.com' />
               <InputRightElement w='50px' bg='blue.800' borderRightRadius="4px" cursor='pointer'
                                   children={<Tooltip label='Suscribirse!'>
                                               <EmailIcon color='white' fontSize='20px' />
                                             </Tooltip>} />
-            </InputGroup>
+            </InputGroup> */}
           </Box>
         </Center>
 

@@ -11,7 +11,8 @@ import { Box,
          Spacer, 
          Flex,
          Badge,
-         Button } from '@chakra-ui/react';
+         Button,
+         useDisclosure } from '@chakra-ui/react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { imgExist2 } from '../../utils/imgExist';
 import { makeDate } from '../../utils/datePost';
@@ -19,12 +20,18 @@ import AuthContext from '../../context/AuthContext';
 import DataContext from '../../context/DataContext';
 import Spinner from '../../components/spinner/Spinner';
 import PageNotFound from '../pageNotFound';
-
+import DialogoAlerta from '../../components/dialog/DialogoAlerta';
 
 const Post = () => {
 
-  const { user } = useContext(AuthContext);
-  const { fetchGetPostById } = useContext(DataContext);
+  const { isOpen, onOpen, onClose } = useDisclosure()
+
+
+  const { user, fetchRefreshToken, backupUser } = useContext(AuthContext);
+  const { fetchGetPostById, fetchDeletePostById, setCreatePost } = useContext(DataContext);
+
+  //setCreatePost es un estado en el estado que me ayuda a identificar cuándo debo volver a realizar la llamada 
+  //en la api para actualizar la data
 
   const navigate = useNavigate();
 
@@ -58,6 +65,10 @@ const Post = () => {
       }
     };
     initialData();
+
+    return () => {
+      setCreatePost(false)
+    }
   }, []);
 
 
@@ -65,6 +76,23 @@ const Post = () => {
     console.log('editando un post');
     navigate('/new-post', { state: { post, user } })
   }
+
+  const deletePost = async (id) => {
+    console.log('elimiando post');
+    const respuesta = await fetchDeletePostById(id, user.accessToken);
+    // console.log(respuesta)
+    if(!respuesta.err){
+      alert('El post fue eliminado');
+      onClose();
+      navigate('/');
+      setCreatePost(true);
+    } else{
+      alert('error ' + respuesta.err.msg);
+      const changeToken = await fetchRefreshToken(backupUser);
+      console.log(changeToken)
+      // onClose();
+    }
+  };
 
   return (
     <>
@@ -99,7 +127,7 @@ const Post = () => {
                   </SimpleGrid>
                   <Spacer />
                   <Flex flexDirection='column' justifyContent='space-between'>
-                    <Flex alignItems='center' gap='10px'>
+                    <Flex alignItems='center' justifyContent='center' gap='10px'>
                     <Badge variant='solid' colorScheme='green' fontSize='0.8em'>
                       {post.ProgrammingLanguage.Name}
                     </Badge>
@@ -109,11 +137,23 @@ const Post = () => {
                     </Flex>
 
                     {
-                      (user.username === post.User.Username) && <Button textAlign='center' 
-                                                                        size='sm'
-                                                                        onClick={editPost}
-                                                                        >Editar
-                                                                </Button>
+                      (user.username === post.User.Username) 
+                        &&
+                        <Flex gap='5px'>
+                        <Button textAlign='center' 
+                                size='sm'
+                                onClick={editPost}
+                                >Editar
+                        </Button>
+
+                        <Button textAlign='center' 
+                        size='sm'
+                        colorScheme='red'
+                        // onClick={() => deletePost(post.PostID)}
+                        onClick={onOpen}
+                        >Eliminar
+                        </Button>
+                        </Flex>
                     }
                   </Flex>
                 </Flex>
@@ -133,9 +173,39 @@ const Post = () => {
 
                 {/* Barra lateral de la derecha */}
                 <Container maxW='30%' bg='blue.800' py='20px'>
-
+                    <Image src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTE_KsCfFoi7e4k7vhrF2XsooE1gNSjwX1B0O0N6YE5khGppNRTNMkebv05BR4L-1g_ydo&usqp=CAU' m='0 auto' />
                 </Container>
               </HStack>
+
+              {/* Alert Dialog */}
+                    {/* <AlertDialog open={isOpen} close={onClose} deletePost={deletePost} id={post.PostID}/> */}
+              <DialogoAlerta open={isOpen} close={onClose} deletePost={deletePost} id={post.PostID}/>
+
+              {/* <AlertDialog
+                isOpen={isOpen}
+                onClose={onClose}
+              >
+                <AlertDialogOverlay>
+                  <AlertDialogContent>
+                    <AlertDialogHeader fontSize='lg' fontWeight='bold'>
+                      Eliminar publicación
+                    </AlertDialogHeader>
+
+                    <AlertDialogBody>
+                      ¿Estás seguro de querer eliminar esta publicación?
+                    </AlertDialogBody>
+
+                    <AlertDialogFooter>
+                      <Button onClick={onClose}>
+                        Cancelar
+                      </Button>
+                      <Button colorScheme='red' onClick={() => deletePost(post.PostID)} ml={3}>
+                        Eliminar
+                      </Button>
+                    </AlertDialogFooter>
+                  </AlertDialogContent>
+                </AlertDialogOverlay>
+              </AlertDialog> */}
             </Container>
           </>
         )

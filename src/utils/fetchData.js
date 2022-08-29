@@ -7,7 +7,7 @@ const API_URL = 'https://developer-news-back.herokuapp.com';
 export const getPostsByTag = async (tag) => {
   const response = await fetch(`${API_URL}/posts?lang=${tag}`);
   const data     = await response.json();
-  data.sort((a, b) => a.PostID - b.PostID)
+  data.sort((a, b) => b.PostID - a.PostID)
   // console.log(data)
   return data;
 };
@@ -20,5 +20,21 @@ export const getPostById = async (id) => {
     return {post: data, err: null};
   } else {
     return { post: null, err: `Error: ${response.statusText}` }
+  }
+};
+
+export const deletePostById = async (idPost, token) => {
+  const response = await fetch(`${API_URL}/posts/${idPost}`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    }
+  });
+  if(response.status === 200) {
+    return {post: { status: response.status, msg: response.statusText }, err: null};
+  } else {
+    console.log(response)
+    return { post: null, err: { msg: `Error: ${response.statusText}`, status: `Error: ${response.status}`} }
   }
 };

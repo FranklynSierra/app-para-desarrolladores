@@ -1,6 +1,6 @@
 import React,{useState,useContext,useEffect} from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { Box, Container,Input, Textarea, Select } from '@chakra-ui/react';
+import { Box, Container,Input, Textarea, Select, HStack, Button } from '@chakra-ui/react';
 import api from '../../api/posts.js'
 import { DataContext } from '../../context/DataContext';
 import { format } from 'date-fns';
@@ -25,18 +25,13 @@ const NewPost = () => {
   const [ photo, setPhoto ] = useState('');
   const [ loading, setLoading]  = useState(false);
 
-  
-  function onImageChange(e){
-    // setImages([...e.target.files])
-    console.log(e)
-  }
-
   useEffect(() => {
     if(state){
       const { post } = state;
-      console.log(post);
+      // console.log(post);
       setPostTitle(post.Title);
       setPostBody(post.Content);
+      setImageURL(state.ImageUrl)
       setLenguajeId(post.LanguageID)
     }
 
@@ -45,6 +40,7 @@ const NewPost = () => {
       setPostBody('');
       setLenguajeId(undefined)
       setPhoto('')
+      setImageURL('')
     }
     
   }, [])
@@ -108,8 +104,8 @@ const NewPost = () => {
     const PostEdited = {
       title: postTitle,
       content: postBody,
-      imageUrl: "imageURL",
-      languageId: 6
+      imageUrl: imageURL,
+      languageId: lenguajeId,
     };
 
     const response = await fetchEditPost(PostEdited, post.PostID, user.accessToken);
@@ -128,7 +124,7 @@ const NewPost = () => {
       title: postTitle,
       content: postBody,
       imageUrl: photo,
-      languageId: lenguajeId
+      languageId: parseInt(lenguajeId)
     });
 
     console.log(newPost);
@@ -150,6 +146,7 @@ const NewPost = () => {
         navigate(`/feed-post/${data.PostID}`)
 
       } else if (response.status === 401 ){
+        consoe.log('iniciando respuesta a error 401 unauthorized')
         const response = await fetch('https://developer-news-back.herokuapp.com/auth/refresh', {
         method: 'POST',
         headers: {
@@ -157,6 +154,7 @@ const NewPost = () => {
           'Accept': 'application/json',},
       });
         console.log(response)
+        // alert('Por favor ')
       } else {
         throw new Error('No sé que está pasando!!')
       }
@@ -185,70 +183,48 @@ const NewPost = () => {
   const selectLenguaje = (e) => {
     console.log(e.target.value);
     setLenguajeId(e.target.value);
-  }
-  
-  //Ya no es necesario esto porque desde el DataContext estamos enviando la información de todos los lenguajes
-  //de programacion que tenemos
-  // useEffect(() => {
-  //   const apiConsumir=async()=>{
-  //     const url='https://developer-news-back.herokuapp.com/programming-languages'
-  //     const result=await axios.get(url)
-      
-  //     setApis(result.data)
-  //   };
-  //   apiConsumir()
-  // }, []);
-
-
+  };
    
   return (
-    <Box py='30px' px='20px' bg='blackAlpha.50' display='flex' alignItems='center'>
-          <Container maxW='85%' 
+    <Box py='30px' px='20px' bg='blackAlpha.50' display='flex' alignItems='center' h='calc(100vh - 60px)'>
+          <Container maxW='75%' 
                 border='2px solid #ebebeb' 
                 boxShadow='md' 
                 borderRadius={6} 
                 >
                 
           <form className="newPostForm" onSubmit={actionHandleSubmit}>
-              <label htmlFor="postTitle">Titulo:</label>
-              <Input
-                  id="postTitle"
-                  type="text"
-                  required
-                  value={postTitle}
-                  onChange={(e) => setPostTitle(e.target.value)}
+
+              <Input variant='flushed' h='80px' fontSize={50} placeholder='Escribe el título del post'
+                     required
+                     type='text'
+                     value={postTitle}
+                     onChange={(e) => setPostTitle(e.target.value)}
               />
-              <label htmlFor="postBody">Publicar:</label>
                 <Textarea required
                   value={postBody}
                   onChange={(e) => setPostBody(e.target.value)}
-                  placeholder='Sorpréndenos con tu blogpost' 
+                  placeholder='Escribe el contenido de tu blogpost' 
                   resize='none' 
                   size='lg' 
                   h='250px' 
                   bg='white'
-                  mt='20px'
-                  
-                  >
+                  my='20px'
+                  />
 
-                </Textarea>
-              {/* <Input  required className='task' value={task} onChange={(e) => setTask(e.target.value)} list="lenguajes" name="lenguajes" />
-              <datalist  id="lenguajes">
-                {
-                  postDB.map((lenguage, ind) => <option key={ind} value={ind + 1} onChek>{lenguage.name}</option>)
-                }
-              </datalist> */}
+              <HStack mb='20px'>
+                <Select disabled={state} placeholder='Selecciona el lenguaje' onChange={selectLenguaje} >
+                  {
+                    postDB.map((lenguage, ind) => <option key={ind} value={ind + 1}>{lenguage.name}</option>)
+                  }
+                </Select>
+              
+                <Input type='file'  disabled={state} onChange={uploadImage} required/>
+              </HStack>
 
-              <Select disabled={state} placeholder='Selecciona el lenguaje' onChange={selectLenguaje}>
-                {
-                  postDB.map((lenguage, ind) => <option key={ind} value={ind + 1}>{lenguage.name}</option>)
-                }
-              </Select>
-            
-            <Input type='file'  disabled={state} onChange={uploadImage} required/>
-            
-          {/* {imageURL.map(imageSrc=><img style={{width:'300px',heigth:'300px'}} src={imageSrc}/>)} */}
-            <button type="submit" disabled={!photo}>Enviar</button>
+              <Button type="submit" disabled={!photo && !state} w='100%' variant='solid' colorScheme='facebook' mb='20px'>
+                {!state ? 'Crear Post' : 'Editar Post'}
+              </Button>
           </form>
         </Container>
       </Box>

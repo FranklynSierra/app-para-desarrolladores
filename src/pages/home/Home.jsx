@@ -1,25 +1,43 @@
-import React from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { CardBase } from '../../components/card-base/CardBase';
 import { Card } from '../../components/card/Card';
 import { ImagePost } from '../../components/imagePost/ImagePost';
 import { PostTitle } from '../../components/postTitle/PostTitle';
 import { PostVertical } from '../../components/postVertical/PostVertical';
-import { Header } from './sections/Header';
 import { ImageContributorsContain } from './sections/ImageContributors/ImageContributorsContain';
 import { LatestHome } from './sections/latest/LatestHome';
 import { MainHome } from './sections/MainHome';
 import { PopularContent } from './sections/popular/Popular';
+import { DataContext } from '../../context/DataContext'
 
  const Home = () => {
+
+  const [ data, setData ] = useState(null);
+  const { postDB, loading, contribuitors} = useContext(DataContext);
+
+  useEffect(() => {
+    if(loading){
+      setData(postDB)
+    }
+    
+  }, [loading, contribuitors])
+  
+
   return (
     <>
    
       <MainHome />
 
       <LatestHome>
-        <Card />
-        <Card />
-        <Card />
+        {
+          data && data.map((category, ind) => {
+            if(category.name == 'Javascript' ||
+               category.name == 'Python' ||
+               category.name == 'Kotlin' ){
+                 return <Card key={ind} post={category.posts_arr[0]}/> 
+               };
+          })
+        }
       </LatestHome>
 
       <ImageContributorsContain />

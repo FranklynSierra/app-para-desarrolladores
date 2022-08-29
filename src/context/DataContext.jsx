@@ -1,5 +1,5 @@
 import { createContext, useState, useEffect } from 'react';
-import { getPostById, getPostsByTag } from '../utils/fetchData';
+import { deletePostById, getPostById, getPostsByTag } from '../utils/fetchData';
 
 import useAxiosFetch from '../hooks/useAxiosFetch';
 
@@ -14,12 +14,13 @@ export const DataProvider = ({ children }) => {
   
   const [search,setSearch]=useState('')
   const [searchResults, setSearchResults] = useState([]);
-  const {data,fetchError,isLoading}=useAxiosFetch('https://developer-news-back.herokuapp.com/posts')
+  const {data,fetchError,isLoading}=useAxiosFetch('https://developer-news-back.herokuapp.com/posts');
 
   //Posts para la nueva version
   const [ postDB, setPostDB ] = useState([]);
   const [ loading, setLoading ] = useState(false);
   const [ createPost, setCreatePost ] = useState(false);
+  const [ contribuitors, setContribuitors ] = useState(null);
 
   
   useEffect(() => {
@@ -50,7 +51,18 @@ export const DataProvider = ({ children }) => {
       
     };
 
+    const getContibuitors = async () => {
+      try {
+        const res = await fetch('https://developer-news-back.herokuapp.com/users/top-contributors/6');
+        const data = await res.json();
+        setContribuitors(data);
+      } catch (error) {
+        console.log(error)
+      }
+    }
+
     getDataDB()
+    getContibuitors()
   }, [createPost]);
   
 
@@ -101,6 +113,15 @@ export const DataProvider = ({ children }) => {
     }
   }
 
+  const fetchDeletePostById = async (id, token) => {
+    try {
+      const respuesta = await deletePostById(id, token);
+      return respuesta;
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
 
   return (
         <DataContext.Provider value={{
@@ -114,7 +135,9 @@ export const DataProvider = ({ children }) => {
             setPosts,
             setCreatePost,
             fetchEditPost,
-            fetchGetPostById
+            fetchGetPostById,
+            contribuitors,
+            fetchDeletePostById
             }}>
 
             {children}

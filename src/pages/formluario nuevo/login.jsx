@@ -1,8 +1,9 @@
 import { useRef, useState, useEffect, useContext } from 'react';
 import {useNavigate, useLocation, Link} from 'react-router-dom';
+import axios from 'axios';
 
 import useAuth from '../../hooks/useAuth';
-import axios from '../../api/axios';
+// import axios from '../../api/axios';
 
 import { AuthContext } from '../../context/AuthContext';
 
@@ -27,7 +28,32 @@ const Login = () => {
 
     useEffect(() => {
         userRef.current.focus();
-    }, [])
+    }, []);
+
+    // useEffect(() => {
+    //   const get = async () => {
+    //     const res = await axios.post('https://developer-news-back.herokuapp.com/auth/login', {
+    //         username: 'future',
+    //         password: 'future'
+    //     }, { withCredentials: true, credentials: 'include', headers: { 'Content-Type': 'application/json' } })
+    //     console.log(res.data)
+    //   }
+
+    //   const get2 = async () => {
+    //     const res = await axios.post('https://developer-news-back.herokuapp.com/auth/refresh', {
+    //         username: 'future',
+    //         password: 'future'
+    //     }, { withCredentials: true, credentials: 'include', headers: { 'Content-Type': 'application/json' } })
+    //     console.log(res.data)
+    //   }
+
+    //   get()
+
+    //   setTimeout(() => {
+    //     get2()
+    //   }, 5000);
+    // }, [])
+    
 
     useEffect(() => {
         setErrMsg('');

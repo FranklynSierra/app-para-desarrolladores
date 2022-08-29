@@ -18,6 +18,7 @@ import PageNotFound from './pages/pageNotFound';
 
 import Crud from './pages/cruds/crud';
 import NewPost from './pages/cruds/NewPost';
+// import  NewPost  from './pages/newPost/NewPost';
 import {BrowserRouter,Route,Routes}from 'react-router-dom'
 import PostPage from './pages/cruds/PostPage';
 

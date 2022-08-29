@@ -34,7 +34,7 @@ const PostPage = () => {
         location('/posts')
        
         }catch(err){
-          console.log(`error: ${err}`)
+        alert(`error: ${err}`)
         }
     
       }

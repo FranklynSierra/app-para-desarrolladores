@@ -30,29 +30,7 @@ const Login = () => {
         userRef.current.focus();
     }, []);
 
-    // useEffect(() => {
-    //   const get = async () => {
-    //     const res = await axios.post('https://developer-news-back.herokuapp.com/auth/login', {
-    //         username: 'future',
-    //         password: 'future'
-    //     }, { withCredentials: true, credentials: 'include', headers: { 'Content-Type': 'application/json' } })
-    //     console.log(res.data)
-    //   }
-
-    //   const get2 = async () => {
-    //     const res = await axios.post('https://developer-news-back.herokuapp.com/auth/refresh', {
-    //         username: 'future',
-    //         password: 'future'
-    //     }, { withCredentials: true, credentials: 'include', headers: { 'Content-Type': 'application/json' } })
-    //     console.log(res.data)
-    //   }
-
-    //   get()
-
-    //   setTimeout(() => {
-    //     get2()
-    //   }, 5000);
-    // }, [])
+   
     
 
     useEffect(() => {
@@ -70,8 +48,7 @@ const Login = () => {
                     withCredentials: true
                 }
             );
-            console.log(JSON.stringify(response?.data));
-            //console.log(JSON.stringify(response));
+          
             const accessToken = response?.data?.accessToken;
             setAuth({  username,  password, accessToken });
             localStorage.setItem("access", accessToken);
@@ -98,7 +75,7 @@ const Login = () => {
         const responseUser = await loginUser({ username, password });
 
         if(responseUser != 401){
-            console.log('usuario logueado correctamente')
+            alert('usuario logueado correctamente')
             navigate('/');
         } else {
             alert('verifica los datos ya que están incorrectos')

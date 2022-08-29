@@ -14,11 +14,11 @@ const NewPost = () => {
   const { state } = useLocation();
   const navigate = useNavigate();
   
-  // console.log(postDB)
+
   const [postBody,setPostBody]=useState('')
   const [postTitle,setPostTitle]=useState('')
   const [images, setImages] = useState([]);
-  // const [apis, setApis] = useState([]);
+
   const [imageURL, setImageURL] = useState('');
   const [ lenguajeId, setLenguajeId ] = useState(undefined);
 
@@ -28,7 +28,7 @@ const NewPost = () => {
   useEffect(() => {
     if(state){
       const { post } = state;
-      // console.log(post);
+    
       setPostTitle(post.Title);
       setPostBody(post.Content);
       setImageURL(state.ImageUrl)
@@ -84,7 +84,7 @@ const NewPost = () => {
       setTask('')
       setImageURL([])
     } catch (err) {
-      console.log(`Error: ${err.message}`);
+     
     }
   };
 
@@ -100,7 +100,7 @@ const NewPost = () => {
 
   const handleSubmitEditPost = async () => {
     const { post, user } = state;
-    console.log(user);
+    
     const PostEdited = {
       title: postTitle,
       content: postBody,
@@ -109,7 +109,7 @@ const NewPost = () => {
     };
 
     const response = await fetchEditPost(PostEdited, post.PostID, user.accessToken);
-    console.log(response)
+    (response)
     if(response === 200){
       navigate(`/feed-post/${post.PostID}`)
     } else {
@@ -127,7 +127,7 @@ const NewPost = () => {
       languageId: parseInt(lenguajeId)
     });
 
-    console.log(newPost);
+  
     try {
       const response = await fetch('https://developer-news-back.herokuapp.com/posts', {
         method: 'POST',
@@ -140,26 +140,25 @@ const NewPost = () => {
       });
       if(response.status === 201){
         const data = await response.json();
-        console.log(data)
+       
         setCreatePost(true);
         setLoading(false);
         navigate(`/feed-post/${data.PostID}`)
 
       } else if (response.status === 401 ){
-        consoe.log('iniciando respuesta a error 401 unauthorized')
+      
         const response = await fetch('https://developer-news-back.herokuapp.com/auth/refresh', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json',},
       });
-        console.log(response)
-        // alert('Por favor ')
+    
       } else {
         throw new Error('No sé que está pasando!!')
       }
     } catch (error) {
-      console.log(error);
+
     }
   }
 
@@ -175,13 +174,13 @@ const NewPost = () => {
     });
   
     const file = await res.json();
-    // console.log(file);
+   
     setPhoto(file.secure_url);
     setLoading(true);
   };
 
   const selectLenguaje = (e) => {
-    console.log(e.target.value);
+
     setLenguajeId(e.target.value);
   };
    

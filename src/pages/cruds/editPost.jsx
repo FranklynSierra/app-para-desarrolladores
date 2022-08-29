@@ -59,7 +59,7 @@ const EditPost = () => {
           setEditBody('');
           setEditTask('')
         }catch(err){
-          console.log(`error: ${err}`)
+       
         }
       }
     return (

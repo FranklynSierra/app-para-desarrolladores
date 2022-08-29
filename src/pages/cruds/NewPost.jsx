@@ -121,10 +121,10 @@ const NewPost = () => {
     // e.preventDefault();
 
     const newPost = JSON.stringify({
-      title: postTitle,
-      content: postBody,
+      Title: postTitle,
+      Content: postBody,
       imageUrl: photo,
-      languageId: parseInt(lenguajeId)
+      LanguageId: parseInt(lenguajeId)
     });
 
   

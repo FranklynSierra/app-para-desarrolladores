@@ -52,7 +52,7 @@ export const Header = () => {
           <Spacer />
 
           <Box className='item' display='flex' w='100%' justifyContent='space-around'>
-            <Link to='/feed-post'>Tecnologias rr</Link>
+            <Link to='/feed-post'>Tecnologias</Link>
           </Box>
           <Spacer />
 
